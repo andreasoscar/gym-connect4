@@ -28,7 +28,7 @@ class Connect4Env(gym.Env):
     def __init__(self, env_config=None) -> None:
         super().__init__()
         self.game = Connect4(env_config)
-        self.action_space = spaces.Discrete(self.game.board_width + 1)
+        self.action_space = spaces.Discrete(self.game.board_width)
         self.observation_space = spaces.Dict({
             'action_mask': spaces.Box(low=0, high=1, shape=(self.game.board_width + 1,), dtype=np.uint8),
             'board': spaces.Box(low=0, high=2, shape=(self.game.board_height, self.game.board_width), dtype=np.uint8),
@@ -64,13 +64,15 @@ class Connect4Env(gym.Env):
         """
 
         player = self.game.player ^ 1  # game.player is incremented in game.move(), so use flipped value internally
-        # next_player = self.game.player
+        next_player = self.game.player
         column = actions[player]
+       
 
         try:
             assert self.game.is_valid_move(column)
         except Exception as e:
             print('Invalid action, column %s is full' % column)
+            print(self.game.get_moves(), actions)
             print(self._get_state(player))
             raise e
 
@@ -79,14 +81,14 @@ class Connect4Env(gym.Env):
         self.boards[1][self.game.column_counts[column] - 1][column] = (self.game.player ^ 1) + 1
 
         game_over = self.game.is_game_over()
-        # winner = self._get_winner() if game_over else WINNER_NONE
+        winner = self._get_winner() if game_over else WINNER_NONE
         obs = {
             i: {
                 'action_mask': self._get_action_mask(i),
                 'board': self._get_state(i),
-                # 'current_player': np.array([next_player]),
-                # 'player_id': np.array([i]),
-                # 'winner': winner,
+                 'current_player': np.array([next_player]),
+                 'player_id': np.array([i]),
+                 'winner': winner,
             } for i in range(2)
         }
         rewards = {i: self.game.get_reward(i) for i in range(2)}
