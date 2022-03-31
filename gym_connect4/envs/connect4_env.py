@@ -140,6 +140,7 @@ class Connect4Env(gym.Env):
 class Connect4:
     def __init__(self, env_config=None, game_state=None) -> None:
         super().__init__()
+        
         self.env_config = dict({
             'board_height': BOARD_HEIGHT,
             'board_width': BOARD_WIDTH,
@@ -149,9 +150,14 @@ class Connect4:
             'reward_lose': REWARD_LOSE,
             'reward_step': REWARD_STEP,
         }, **env_config or {})
-
+        
+        self.init_board = np.zeros([6,7]).astype(str)
+        self.init_board[self.init_board == "0.0"] = " "
+        self.current_board = self.init_board
+        
         self.player = 1  # current player (in {0, 1})
         self.bitboard = [0, 0]  # bitboard for each player
+        
         # the four different win condition directions to bitshift over:
         #   - (vertical, horizontal, diagonal-descending, diagonal-ascending)
         self.win_conditions = [1, (self.board_height + 1), (self.board_height + 1) - 1, (self.board_height + 1) + 1]
@@ -197,6 +203,9 @@ class Connect4:
         self.player ^= 1
         self.bitboard[self.player] ^= m2  # XOR operation to insert stone in player's bitboard
         self.column_counts[column] += 1  # update number of stones in column
+        self.current_board[6-self.column_counts[column], column] = 'X' if self.player == 0 else 'O'
+        print(self.current_board)
+        
 
     def get_reward(self, player=None) -> float:
         if player is None:
