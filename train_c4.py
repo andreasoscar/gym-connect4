@@ -17,13 +17,13 @@ logging.basicConfig(format='%(asctime)s [%(levelname)s]: %(message)s', \
 logger = logging.getLogger(__file__)
 
 def save_as_pickle(filename, data):
-    completeName = os.path.join("./model_data/",\
+    completeName = os.path.join("",\
                                 filename)
     with open(completeName, 'wb') as output:
         pickle.dump(data, output)
         
 def load_pickle(filename):
-    completeName = os.path.join("./model_data/",\
+    completeName = os.path.join("",\
                                 filename)
     with open(completeName, 'rb') as pkl_file:
         data = pickle.load(pkl_file)
@@ -31,7 +31,7 @@ def load_pickle(filename):
 
 def load_state(net, optimizer, scheduler, args, iteration, new_optim_state=True):
     """ Loads saved model and optimizer states if exists """
-    base_path = "./model_data/"
+    base_path = ""
     checkpoint_path = os.path.join(base_path, "%s_iter%d.pth.tar" % (args.neural_net_name, iteration))
     start_epoch, checkpoint = 0, None
     if os.path.isfile(checkpoint_path):
@@ -50,7 +50,7 @@ def load_state(net, optimizer, scheduler, args, iteration, new_optim_state=True)
 
 def load_results(iteration):
     """ Loads saved results if exists """
-    losses_path = "./model_data/losses_per_epoch_iter%d.pkl" % iteration
+    losses_path = "losses_per_epoch_iter%d.pkl" % iteration
     if os.path.isfile(losses_path):
         losses_per_epoch = load_pickle("losses_per_epoch_iter%d.pkl" % iteration)
         logger.info("Loaded results buffer")
@@ -69,7 +69,7 @@ def train(net, dataset, optimizer, scheduler, start_epoch, cpu, args, iteration)
     losses_per_epoch = load_results(iteration + 1)
     
     logger.info("Starting training process...")
-    update_size = len(train_loader)//10
+    update_size = len(train_loader)//4
     print("Update step size: %d" % update_size)
     for epoch in range(start_epoch, args.num_epochs):
         total_loss = 0.0
@@ -105,14 +105,14 @@ def train(net, dataset, optimizer, scheduler, start_epoch, cpu, args, iteration)
         if len(losses_per_batch) >= 1:
             losses_per_epoch.append(sum(losses_per_batch)/len(losses_per_batch))
         if (epoch % 2) == 0:
-            save_as_pickle("losses_per_epoch_iter%d.pkl" % (iteration + 1), losses_per_epoch)
+            save_as_pickle("losses_per_epoch_iter%d.pkl" % (iteration), losses_per_epoch)
             torch.save({
                     'epoch': epoch + 1,\
                     'state_dict': net.state_dict(),\
                     'optimizer' : optimizer.state_dict(),\
                     'scheduler' : scheduler.state_dict(),\
-                }, os.path.join("./model_data/",\
-                    "%s_iter%d.pth.tar" % (args.neural_net_name, (iteration + 1))))
+                }, os.path.join("",\
+                    "%s_iter%d.pth.tar" % (args.neural_net_name, (iteration))))
         '''
         # Early stopping
         if len(losses_per_epoch) > 50:
@@ -126,7 +126,7 @@ def train(net, dataset, optimizer, scheduler, start_epoch, cpu, args, iteration)
     ax.set_xlabel("Epoch")
     ax.set_ylabel("Loss per batch")
     ax.set_title("Loss vs Epoch")
-    plt.savefig(os.path.join("./model_data/", "Loss_vs_Epoch_iter%d_%s.png" % ((iteration + 1), datetime.datetime.today().strftime("%Y-%m-%d"))))
+    plt.savefig(os.path.join("", "Loss_vs_Epoch_iter%d_%s.png" % ((iteration), datetime.datetime.today().strftime("%Y-%m-%d"))))
     plt.show()
     
 def train_connectnet(args, iteration, new_optim_state):

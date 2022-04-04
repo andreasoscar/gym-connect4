@@ -212,7 +212,7 @@ def run_MCTS(args, start_idx=0, iteration=0):
         net.share_memory()
         net.eval()
     
-        current_net_filename = os.path.join("./model_data/",\
+        current_net_filename = os.path.join("",\
                                         net_to_play)
         if os.path.isfile(current_net_filename):
             checkpoint = torch.load(current_net_filename)
@@ -244,7 +244,7 @@ def run_MCTS(args, start_idx=0, iteration=0):
         logger.info("Preparing model for MCTS...")
         net.eval()
         
-        current_net_filename = os.path.join("./model_data/",\
+        current_net_filename = os.path.join("",\
                                         net_to_play)
         if os.path.isfile(current_net_filename):
             checkpoint = torch.load(current_net_filename)

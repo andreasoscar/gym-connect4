@@ -29,22 +29,7 @@ def load_pickle(filename):
     with open(completeName, 'rb') as pkl_file:
         data = pickle.load(pkl_file)
     return data
-class arena_best():
-    def __init__(self, nn, game):
-        self.nn = nn
-        self.game = game
-    
-    def play_round_best(self):
-        t = 0.1
-        current_board = self.game
-        while current_board.get_moves() != [] and current_board.player==0:
-            #dataset.append(copy.deepcopy(ed.encode_board(current_board)))
-            print("")
-            if current_board.player == 0:
-                root = UCT_search(current_board,777,self.nn,t)
-                policy = get_policy(root, t); print("Policy: ", policy, "black")
-                return policy
-        
+
 class arena():
     def __init__(self, current_cnet, best_cnet):
         self.current = current_cnet
@@ -67,11 +52,11 @@ class arena():
             if current_board.player == 0:
                 root = UCT_search(current_board,777,white,t)
                 policy = get_policy(root, t); print("Policy: ", policy, "white = %s" %(str(w)))
-                return policy
+                
             elif current_board.player == 1:
                 root = UCT_search(current_board,777,black,t)
                 policy = get_policy(root, t); print("Policy: ", policy, "black = %s" %(str(b)))
-                return policy
+
             current_board = do_decode_n_move_pieces(current_board,\
                                                     np.random.choice(np.array([0,1,2,3,4,5,6]), \
                                                                      p = policy)) # decode move and move piece(s)
@@ -110,19 +95,19 @@ class arena():
 def fork_process(arena_obj, num_games, cpu): # make arena picklable
     arena_obj.evaluate(num_games, cpu)
 
-def evaluate_pos(args, nn_, game):
-    nn= "%s_iter%d.pth.tar" % (args.neural_net_name, nn_)
+# def evaluate_pos(args, nn_, game):
+#     nn= "%s_iter%d.pth.tar" % (args.neural_net_name, nn_)
 
-    cnet = ConnectNet()
+#     cnet = ConnectNet()
 
-    if args.MCTS_num_processes == 1:
-        nn_filename = os.path.join("",\
-                                    nn)
-        cnet.eval()
-        checkpoint = torch.load(nn_filename)
-        cnet.load_state_dict(checkpoint['state_dict'])
-        arena1 = arena_best(cnet, game)
-        return arena1.play_round_best()
+#     if args.MCTS_num_processes == 1:
+#         nn_filename = os.path.join("",\
+#                                     nn)
+#         cnet.eval()
+#         checkpoint = torch.load(nn_filename)
+#         cnet.load_state_dict(checkpoint['state_dict'])
+#         arena1 = arena_best(cnet, game)
+#         return arena1.play_round_best()
         
 
 def evaluate_nets(args, iteration_1, iteration_2) :
