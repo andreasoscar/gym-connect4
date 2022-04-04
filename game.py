@@ -1,10 +1,13 @@
-import gym
+
 import sys
 import gym_connect4
+import numpy as np
+import gym
 from MCTS_c4 import run_MCTS
 from train_c4 import train_connectnet
 from argparse import ArgumentParser
 from evaluator_c4 import evaluate_nets
+from evaluator_c4 import evaluate_pos
 
 
 env = gym.make('Connect4Env-v0')
@@ -26,24 +29,33 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     #run_MCTS(args, start_idx=0, iteration=5)
-    winner = evaluate_nets(args, 5, 0)
-    print(winner)
 
-    # agents = ['Agent1()', 'Agent2()']
-    # obses = env.reset()  # dict: {0: obs_player_1, 1: obs_player_2}
-    # game_over = False
-    # while not game_over:
-    #     action_dict = {}
-    #     for agent_id, agent in enumerate(agents):
-    #         #action = env.action_space.sample()
-    #         print("ran mcts")
-    #         run_MCTS(args, start_idx=0, iteration=5)
-    #         #train_connectnet(args, iteration=5, new_optim_state=True)
-    #         #action_dict[agent_id] = action
-    #     obses, rewards, game_over, info = env.step(action_dict)
-    #     env.render()
-    #     if game_over:
-    #         print("WINNER: ", obses[0]['winner'])
+
+    agents = ['Agent1()', 'Agent2()']
+    obses = env.reset()  # dict: {0: obs_player_1, 1: obs_player_2}
+    game_over = False
+    
+    while not game_over:
+        action_dict = {}
+        for agent_id, agent in enumerate(agents):
+            if agent_id == 0:
+                action = env.action_space.sample()
+                if env.game.player == 1:
+                    print("player (1), random decision:", action+1)
+                
+            else:
+                winner = evaluate_pos(args, 0, env.game)
+                action = np.argmax(winner)
+                if env.game.player == 0:
+                    print("player (2), MCTS decision:", action+1)
+            action_dict[agent_id] = action
+        
+        obses, rewards, game_over, info = env.step(action_dict)
+        env.render()
+        #print(env.game.current_board)
+
+        if game_over:
+            print("WINNER: ", obses[0]['winner'])
 
 
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import numpy as np
-from connect4_env import Connect4Env
+from connect4_env import Connect4 as board
 
 def encode_board(board):
     board_state = board.current_board

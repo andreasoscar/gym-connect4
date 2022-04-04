@@ -77,6 +77,7 @@ class Connect4Env(gym.Env):
             raise e
 
         self.game.move(column)
+   
         self.boards[0][self.game.column_counts[column] - 1][column] = self.game.player + 1
         self.boards[1][self.game.column_counts[column] - 1][column] = (self.game.player ^ 1) + 1
 
@@ -204,6 +205,7 @@ class Connect4:
         self.bitboard[self.player] ^= m2  # XOR operation to insert stone in player's bitboard
         self.column_counts[column] += 1  # update number of stones in column
         self.current_board[6-self.column_counts[column], column] = 'X' if self.player == 0 else 'O'
+
         
 
     def get_reward(self, player=None) -> float:
