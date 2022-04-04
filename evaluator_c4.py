@@ -35,12 +35,10 @@ class arena_best():
         self.game = game
     
     def play_round_best(self):
+        t = 0.1
         current_board = self.game
-        checkmate = False
-        dataset = []
-        value = 0; t = 0.1
-        while checkmate == False and current_board.get_moves() != [] and current_board.player==0:
-            dataset.append(copy.deepcopy(ed.encode_board(current_board)))
+        while current_board.get_moves() != [] and current_board.player==0:
+            #dataset.append(copy.deepcopy(ed.encode_board(current_board)))
             print("")
             if current_board.player == 0:
                 root = UCT_search(current_board,777,self.nn,t)
