@@ -35,7 +35,7 @@ class arena_best():
         self.game = game
     
     def play_round_best(self):
-        t = 0.1
+        
         current_board = self.game
         while current_board.get_moves() != [] and current_board.player==0:
             #dataset.append(copy.deepcopy(ed.encode_board(current_board)))
