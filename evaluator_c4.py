@@ -35,48 +35,22 @@ class arena():
         self.current = current_cnet
         self.best = best_cnet
     
-    def play_round(self):
-        
+    def play_round(self, board, nn):
         logger.info("Starting game round...")
-        if np.random.uniform(0,1) <= 0.5:
-            white = self.current; black = self.best; w = "current"; b = "best"
-        else:
-            white = self.best; black = self.current; w = "best"; b = "current"
-        current_board = cboard()
+        # if np.random.uniform(0,1) <= 0.5:
+        #     white = self.current; black = self.best; w = "current"; b = "best"
+        # else:
+        #     white = self.best; black = self.current; w = "best"; b = "current"
+        current_board = board
         checkmate = False
         dataset = []
         value = 0; t = 0.1
-        while checkmate == False and current_board.get_moves() != []:
-            dataset.append(copy.deepcopy(ed.encode_board(current_board)))
-            print("");
-            if current_board.player == 0:
-                root = UCT_search(current_board,777,white,t)
-                policy = get_policy(root, t); print("Policy: ", policy, "white = %s" %(str(w)))
-                
-            elif current_board.player == 1:
-                root = UCT_search(current_board,777,black,t)
-                policy = get_policy(root, t); print("Policy: ", policy, "black = %s" %(str(b)))
 
-            current_board = do_decode_n_move_pieces(current_board,\
-                                                    np.random.choice(np.array([0,1,2,3,4,5,6]), \
-                                                                     p = policy)) # decode move and move piece(s)
-            if (current_board.is_winner(0) or current_board.is_winner(1)) == True: # someone wins
-                if current_board.player == 0: # black wins
-                    value = -1
-                elif current_board.player == 1: # white wins
-                    value = 1
-                checkmate = True
-        dataset.append(ed.encode_board(current_board))
-        if value == -1:
-            dataset.append(f"{b} as black wins")
-            return b, dataset
-        elif value == 1:
-            dataset.append(f"{w} as white wins")
-            return w, dataset
-        else:
-            dataset.append("Nobody wins")
-            return None, dataset
-    
+        if current_board.player == 0:
+            root = UCT_search(current_board,777,nn,t)
+            policy = get_policy(root, t); print("Policy: ", policy, "white = %s" %(str("white")))
+            return policy
+            
     def evaluate(self, num_games, cpu):
         current_wins = 0
         logger.info("[CPU %d]: Starting games..." % cpu)
@@ -109,6 +83,12 @@ def fork_process(arena_obj, num_games, cpu): # make arena picklable
 #         arena1 = arena_best(cnet, game)
 #         return arena1.play_round_best()
         
+        
+def evaluate_position(args, board, nn):
+    arena1 = arena(current_cnet=nn, best_cnet=None)
+    policy = arena1.play_round(board, nn)
+    return policy
+    
 
 def evaluate_nets(args, iteration_1, iteration_2) :
     logger.info("Loading nets...")
