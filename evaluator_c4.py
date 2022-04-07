@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/n/env python
 
 import os.path
 import torch
@@ -47,13 +47,16 @@ class arena():
         value = 0; t = 0.1
         while checkmate == False and current_board.get_moves() != []:
             dataset.append(copy.deepcopy(ed.encode_board(current_board)))
-            print(""); print(current_board.current_board)
+            print("");
+            
+            #print(current_board.current_board)
             if current_board.player == 0:
                 root = UCT_search(current_board,777,white,t)
                 policy = get_policy(root, t); print("Policy: ", policy, "white = %s" %(str(w)))
             elif current_board.player == 1:
                 root = UCT_search(current_board,777,black,t)
                 policy = get_policy(root, t); print("Policy: ", policy, "black = %s" %(str(b)))
+                
             current_board = do_decode_n_move_pieces(current_board,\
                                                     np.random.choice(np.array([0,1,2,3,4,5,6]), \
                                                                      p = policy)) # decode move and move piece(s)
@@ -87,9 +90,9 @@ class arena():
 
         if current_board.player == 0:
             root = UCT_search(current_board,777,nn,t)
-            policy = get_policy(root, t); print("Policy: ", policy, "white = %s" %(str("white")))
+            policy = get_policy(root, t); #print("Policy: ", policy, "white = %s" %(str("white")))
             return policy
-            
+        
     def evaluate(self, num_games, cpu):
         current_wins = 0
         logger.info("[CPU %d]: Starting games..." % cpu)
@@ -125,11 +128,12 @@ def fork_process(arena_obj, num_games, cpu): # make arena picklable
         
 def evaluate_position(args, board, nn):
     arena1 = arena(current_cnet=nn, best_cnet=None)
-    policy = arena1.play_round_best(board, nn)
+    policy = arena1.play_round_pos(board, nn)
     return policy
     
 
 def evaluate_nets(args, iteration_1, iteration_2) :
+    total_games = 0
     logger.info("Loading nets...")
     current_net="%s_iter%d.pth.tar" % (args.neural_net_name, iteration_2); best_net="%s_iter%d.pth.tar" % (args.neural_net_name, iteration_1)
     current_net_filename = os.path.join("",\
@@ -144,8 +148,8 @@ def evaluate_nets(args, iteration_1, iteration_2) :
     best_cnet = ConnectNet()
     cuda = torch.cuda.is_available()
     if cuda:
-        current_cnet.cuda()
-        best_cnet.cuda()
+        current_cnet = current_cnet.cuda()
+        best_cnet = best_cnet.cuda()
     
     if not os.path.isdir("./evaluator_data/"):
         os.mkdir("evaluator_data")

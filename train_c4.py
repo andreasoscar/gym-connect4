@@ -145,7 +145,8 @@ def train_connectnet(args, iteration, new_optim_state):
     net = ConnectNet()
     cuda = torch.cuda.is_available()
     if cuda:
-        net.cuda()
+        net = net.cuda()
+        
     optimizer = optim.Adam(net.parameters(), lr=args.lr, betas=(0.8, 0.999))
     scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[50,100,150,200,250,300,400], gamma=0.77)
     start_epoch = load_state(net, optimizer, scheduler, args, iteration, new_optim_state)

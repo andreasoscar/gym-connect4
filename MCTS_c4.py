@@ -13,7 +13,7 @@ from alpha_net_c4 import ConnectNet
 import datetime
 import logging
 from tqdm import tqdm
-
+np.seterr(divide='ignore', invalid='ignore')
 logging.basicConfig(format='%(asctime)s [%(levelname)s]: %(message)s', \
                     datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
 logger = logging.getLogger(__file__)
@@ -115,7 +115,7 @@ class UCTNode():
         current = self
         while current.parent is not None:
             current.number_visits += 1
-            if current.game.player == 1: # same as current.parent.game.player = 0
+            if current.game.player == 1: # same as current.parent.game.player = 0PE
                 current.total_value += (1*value_estimate) # value estimate +1 = O wins
             elif current.game.player == 0: # same as current.parent.game.player = 1
                 current.total_value += (-1*value_estimate)
@@ -127,12 +127,19 @@ class DummyNode(object):
         self.child_total_value = collections.defaultdict(float)
         self.child_number_visits = collections.defaultdict(float)
 
-def UCT_search(game_state, num_reads,net,temp):
+def UCT_search(game_state, num_reads,net,temp, max_depth = 20):
     root = UCTNode(game_state, move=None, parent=DummyNode())
+    cuda = torch.cuda.is_available()
     for i in range(num_reads):
         leaf = root.select_leaf()
         encoded_s = ed.encode_board(leaf.game); encoded_s = encoded_s.transpose(2,0,1)
-        encoded_s = torch.from_numpy(encoded_s).float()
+        encoded_s = torch.from_numpy(encoded_s).cuda().float()
+        if cuda:
+            net = net.cuda()
+            
+        #   print(encoded_s.to("cuda:0"))
+        #   net = encoded_s.to("cuda:0")
+        #   child_priors, value_estimate = net(encoded_s)    
         child_priors, value_estimate = net(encoded_s)
         
         child_priors = child_priors.detach().cpu().numpy().reshape(-1); value_estimate = value_estimate.item()
@@ -175,13 +182,18 @@ def MCTS_self_play(connectnet, num_games, start_idx, cpu, args, iteration):
                 t = 0.1
             states.append(copy.deepcopy(current_board.current_board))
             board_state = copy.deepcopy(ed.encode_board(current_board))
+            if torch.cuda.is_available():
+                 connectnet.to("cuda:0")
             root = UCT_search(current_board,777,connectnet,t)
-            policy = get_policy(root, t); print("[CPU: %d]: Game %d POLICY:\n " % (cpu, idxx), policy)
+            policy = get_policy(root, t); 
+            if args.print_board:
+                print("[CPU: %d]: Game %d POLICY:\n " % (cpu, idxx), policy)
             current_board = do_decode_n_move_pieces(current_board,\
                                                     np.random.choice(np.array([0,1,2,3,4,5,6]), \
                                                                      p = policy)) # decode move and move piece(s)
             dataset.append([board_state,policy])
-            print("[Iteration: %d CPU: %d]: Game %d CURRENT BOARD:\n" % (iteration, cpu, idxx), current_board.current_board,current_board.player); print(" ")
+            if args.print_board:
+                print("[Iteration: %d CPU: %d]: Game %d CURRENT BOARD:\n" % (iteration, cpu, idxx), current_board.current_board,current_board.player); print(" ")
             if (current_board.is_winner(0) or current_board.is_winner(1)) == True: # if somebody won
                 if current_board.is_winner(0): # black wins
                     value = -1
@@ -205,7 +217,7 @@ def run_MCTS(args, start_idx=0, iteration=0):
     net = ConnectNet()
     cuda = torch.cuda.is_available()
     if cuda:
-        net.cuda()
+        net = net.cuda()
     
     if args.MCTS_num_processes > 1:
         logger.info("Preparing model for multi-process MCTS...")
@@ -259,3 +271,4 @@ def run_MCTS(args, start_idx=0, iteration=0):
         with torch.no_grad():
             MCTS_self_play(net, args.num_games_per_MCTS_process, start_idx, 0, args, iteration)
         logger.info("Finished MCTS!")
+
