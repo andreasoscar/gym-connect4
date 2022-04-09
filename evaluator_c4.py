@@ -159,6 +159,7 @@ def evaluate_nets(args, iteration_1, iteration_2) :
         
         current_cnet.share_memory(); best_cnet.share_memory()
         current_cnet.eval(); best_cnet.eval()
+<<<<<<< HEAD
         if not cuda:
             checkpoint = torch.load(current_net_filename, map_location=torch.device('cpu'))
         else:
@@ -170,6 +171,12 @@ def evaluate_nets(args, iteration_1, iteration_2) :
             checkpoint = torch.load(best_net_filename, map_location=torch.device('cpu'))
         else:
             checkpoint = torch.load(best_net_filename)
+=======
+        
+        checkpoint = torch.load(current_net_filename)
+        current_cnet.load_state_dict(checkpoint['state_dict'])
+        checkpoint = torch.load(best_net_filename)
+>>>>>>> b9b338686fa4a3cba7ff0c68b1db2deabb55fb58
         best_cnet.load_state_dict(checkpoint['state_dict'])
          
         processes = []

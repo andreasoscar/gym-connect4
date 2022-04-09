@@ -133,11 +133,16 @@ def UCT_search(game_state, num_reads,net,temp, max_depth = 20):
     for i in range(num_reads):
         leaf = root.select_leaf()
         encoded_s = ed.encode_board(leaf.game); encoded_s = encoded_s.transpose(2,0,1)
+<<<<<<< HEAD
         if not cuda:
             encoded_s = torch.from_numpy(encoded_s).float()
             
         if cuda:
             encoded_s = torch.from_numpy(encoded_s).cuda().float()
+=======
+        encoded_s = torch.from_numpy(encoded_s).cuda().float()
+        if cuda:
+>>>>>>> b9b338686fa4a3cba7ff0c68b1db2deabb55fb58
             net = net.cuda()
             
         #   print(encoded_s.to("cuda:0"))
