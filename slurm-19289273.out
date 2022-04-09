@@ -1,0 +1,34 @@
+04/07/2022 02:04:19 PM [INFO]: Preparing model for multi-process MCTS...
+04/07/2022 02:04:19 PM [INFO]: Loaded cc4_current_net__iter5.pth.tar model.
+04/07/2022 02:04:19 PM [INFO]: Spawning 12 processes...
+START TIME:  14:04:07
+04/07/2022 02:04:23 PM [INFO]: [CPU: 0]: Starting MCTS self-play...
+  0%|          | 0/1000 [00:00<?, ?it/s]04/07/2022 02:04:23 PM [INFO]: [CPU: 0]: Game 0
+04/07/2022 02:04:24 PM [INFO]: [CPU: 8]: Starting MCTS self-play...
+  0%|          | 0/1000 [00:00<?, ?it/s]04/07/2022 02:04:24 PM [INFO]: [CPU: 8]: Game 0
+04/07/2022 02:04:24 PM [INFO]: [CPU: 1]: Starting MCTS self-play...
+04/07/2022 02:04:24 PM [INFO]: [CPU: 3]: Starting MCTS self-play...
+04/07/2022 02:04:24 PM [INFO]: [CPU: 2]: Starting MCTS self-play...
+04/07/2022 02:04:24 PM [INFO]: [CPU: 7]: Starting MCTS self-play...
+  0%|          | 0/1000 [00:00<?, ?it/s]  0%|          | 0/1000 [00:00<?, ?it/s]04/07/2022 02:04:24 PM [INFO]: [CPU: 1]: Game 0
+04/07/2022 02:04:24 PM [INFO]: [CPU: 4]: Starting MCTS self-play...
+04/07/2022 02:04:24 PM [INFO]: [CPU: 3]: Game 0
+04/07/2022 02:04:24 PM [INFO]: [CPU: 5]: Starting MCTS self-play...
+  0%|          | 0/1000 [00:00<?, ?it/s]04/07/2022 02:04:24 PM [INFO]: [CPU: 2]: Game 0
+  0%|          | 0/1000 [00:00<?, ?it/s]04/07/2022 02:04:24 PM [INFO]: [CPU: 7]: Game 0
+  0%|          | 0/1000 [00:00<?, ?it/s]04/07/2022 02:04:24 PM [INFO]: [CPU: 4]: Game 0
+  0%|          | 0/1000 [00:00<?, ?it/s]04/07/2022 02:04:24 PM [INFO]: [CPU: 5]: Game 0
+04/07/2022 02:04:24 PM [INFO]: [CPU: 6]: Starting MCTS self-play...
+04/07/2022 02:04:24 PM [INFO]: [CPU: 10]: Starting MCTS self-play...
+  0%|          | 0/1000 [00:00<?, ?it/s]04/07/2022 02:04:24 PM [INFO]: [CPU: 6]: Game 0
+  0%|          | 0/1000 [00:00<?, ?it/s]04/07/2022 02:04:24 PM [INFO]: [CPU: 10]: Game 0
+04/07/2022 02:04:24 PM [INFO]: [CPU: 9]: Starting MCTS self-play...
+  0%|          | 0/1000 [00:00<?, ?it/s]04/07/2022 02:04:24 PM [INFO]: [CPU: 9]: Game 0
+04/07/2022 02:04:24 PM [INFO]: [CPU: 11]: Starting MCTS self-play...
+  0%|          | 0/1000 [00:00<?, ?it/s]04/07/2022 02:04:24 PM [INFO]: [CPU: 11]: Game 0
+  0%|          | 1/1000 [00:49<13:52:00, 49.97s/it]04/07/2022 02:05:14 PM [INFO]: [CPU: 9]: Game 1
+  0%|          | 1/1000 [01:31<25:19:49, 91.28s/it]04/07/2022 02:05:54 PM [INFO]: [CPU: 0]: Game 1
+  0%|          | 1/1000 [01:37<27:01:00, 97.36s/it]04/07/2022 02:06:01 PM [INFO]: [CPU: 3]: Game 1
+  0%|          | 1/1000 [01:44<28:53:57, 104.14s/it]04/07/2022 02:06:08 PM [INFO]: [CPU: 8]: Game 1
+  0%|          | 1/1000 [01:44<28:55:44, 104.25s/it]04/07/2022 02:06:08 PM [INFO]: [CPU: 4]: Game 1
+slurmstepd: error: *** JOB 19289273 ON n1253 CANCELLED AT 2022-04-07T14:06:09 ***

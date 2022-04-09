@@ -1,0 +1,2 @@
+/var/lib/slurm/slurmd/job19289236/slurm_script: line 8: 172278 Killed                  python3 game.py
+slurmstepd: error: Detected 1 oom-kill event(s) in StepId=19289236.batch cgroup. Some of your processes may have been killed by the cgroup out-of-memory handler.
