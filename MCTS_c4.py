@@ -273,5 +273,11 @@ def run_MCTS(args, start_idx=0, iteration=0):
         
         with torch.no_grad():
             MCTS_self_play(net, args.num_games_per_MCTS_process, start_idx, 0, args, iteration)
+        f = open("MCTS_log/log.txt", "a")
+        now = datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+        f.write(current_time + "," + " finished MCTS play for iteration: " + str(iteration) + " with " + str(args.num_games_per_MCTS_process) + "games per process, with a total of " 
+        + str(args.num_games_per_MCTS_process * args.MCTS_num_processes) + " games played.\n")
+        f.close()
         logger.info("Finished MCTS!")
 

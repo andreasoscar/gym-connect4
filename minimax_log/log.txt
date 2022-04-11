@@ -1,0 +1,12 @@
+14:33:39, win ratio: 0.0vs depth: 2
+14:35:12, win ratio: 0.0 vs depth: 2
+14:36:18, win ratio: 0.0 vs depth: 2
+14:38:02, win ratio: 0.0 vs depth: 2
+14:39:42, win ratio: 0.0 vs depth: 2
+14:40:35, win ratio: 0.0 vs depth: 2
+14:42:29, win ratio: 0.0 vs depth: 2
+14:46:14, win ratio: 0.0 vs depth: 2
+14:47:10, win ratio: 0.6 vs depth: 2
+14:47:59, win ratio: 1.0 vs depth: 2
+14:49:38, win ratio: 1.0 vs depth: 1
+15:14:43, win ratio: 1.0 vs depth: 1

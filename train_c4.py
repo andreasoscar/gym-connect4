@@ -152,3 +152,10 @@ def train_connectnet(args, iteration, new_optim_state):
     start_epoch = load_state(net, optimizer, scheduler, args, iteration, new_optim_state)
     
     train(net, datasets, optimizer, scheduler, start_epoch, 0, args, iteration)
+    f = open("cc4_log/log.txt", "a")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    f.write(current_time + ", finished training net: " + str(args.neural_net_name) + ", iteration " + str(iteration) + "\n")
+    f.close()
+    
+    

@@ -4,9 +4,10 @@ import copy
 
 class minimax:
 
-    def __init__(self):
+    def __init__(self,depth):
         self.COL = 7
         self.COL = 6
+        self.depth = depth
         
         self.SAMPLE_SIZE = 4
 
@@ -138,8 +139,8 @@ class minimax:
         random.shuffle(possible_moves)
         #since this is the first time we place a piece, all moves 0-6 should be available, pick a random column to place a piece in
         
-        print("initial col",possible_moves)
+        #print("initial col",possible_moves)
         initial_col = random.choice(possible_moves)
         # value is not used here
-        value, col = self.alphabeta(3, float('-inf'), float('inf'), True, state, initial_col)
+        value, col = self.alphabeta(self.depth, float('-inf'), float('inf'), True, state, initial_col)
         return col

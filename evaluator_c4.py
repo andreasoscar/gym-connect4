@@ -106,6 +106,7 @@ class arena():
         print("Current_net wins ratio: %.5f" % (current_wins/num_games))
         save_as_pickle("wins_cpu_%i" % (cpu),\
                                              {"best_win_ratio": current_wins/num_games, "num_games":num_games})
+  
         logger.info("[CPU %d]: Finished arena games!" % cpu)
         
 def fork_process(arena_obj, num_games, cpu): # make arena picklable
@@ -192,6 +193,11 @@ def evaluate_nets(args, iteration_1, iteration_2) :
             stats = load_pickle("wins_cpu_%i" % (i))
             wins_ratio += stats['best_win_ratio']
         wins_ratio = wins_ratio/num_processes
+        f = open("evaluator_log/log.txt", "a")
+        now = datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+        f.write(current_time + ", net " + str(iteration_2) + " vs net " + str(iteration_1) + ", win ratio : " + str(wins_ratio) + "\n")
+        f.close()
         if wins_ratio >= 0.55:
             return iteration_2
         else:
@@ -207,4 +213,13 @@ def evaluate_nets(args, iteration_1, iteration_2) :
         arena1.evaluate(num_games=args.num_evaluator_games, cpu=0)
         
         stats = load_pickle("wins_cpu_%i" % (0))
-        print(stats)
+        wins_ratio = stats['best_win_ratio']/num_processes
+        
+        f = open("evaluator_log/log.txt", "a")
+        now = datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+        f.write(current_time + ", net " + str(iteration_2) + " vs net " + str(iteration_1) + ", win ratio : " + str(wins_ratio) + "\n")
+        f.close()
+        
+    
+    
