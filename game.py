@@ -6,6 +6,7 @@ import os
 import gym as gym 
 import time
 import torch
+from alphabeta import alphabeta
 from MCTS_c4 import run_MCTS
 from train_c4 import train_connectnet
 from argparse import ArgumentParser
@@ -34,6 +35,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
 
+   
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     print("START SELF PLAY: ", current_time)
@@ -46,52 +48,54 @@ if __name__ == "__main__":
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     print("START EVALUATION", current_time)
-    evaluate_nets(args, iteration_1=3, iteration_2=5)
+    #evaluate_nets(args, iteration_1=3, iteration_2=5)
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     print("END EVALUATION", current_time)
-    # #evaluate_nets(args, iteration_1=5, iteration_2=1)
-    # agents = ['Agent1()', 'Agent2()']
-    # obses = env.reset()  # dict: {0: obs_player_1, 1: obs_player_2}
-    # game_over = False
+    #evaluate_nets(args, iteration_1=5, iteration_2=1)
+    agents = ['Agent1()', 'Agent2()']
+    obses = env.reset()  # dict: {0: obs_player_1, 1: obs_player_2}
+    game_over = False
     
-    #LOAD NEURAL NETWORK
-    # current_net="%s_iter%d.pth.tar" % (args.neural_net_name, 1);
-    # current_net_filename = os.path.join("",\
-    #                                 current_net)
-    # current_cnet = ConnectNet()
+    cuda = torch.cuda.is_available()
+   #LOAD NEURAL NETWORK
+    current_net="%s_iter%d.pth.tar" % (args.neural_net_name, 5);
+    current_net_filename = os.path.join("",\
+                                    current_net)
+    current_cnet = ConnectNet()
     
-    # current_cnet.share_memory()
-    # current_cnet.eval()
-        
-    # checkpoint = torch.load(current_net_filename)
-    # current_cnet.load_state_dict(checkpoint['state_dict'])
+    current_cnet.share_memory()
+    current_cnet.eval()
+    if not cuda:
+        checkpoint = torch.load(current_net_filename, map_location=torch.device('cpu'))
+    current_cnet.load_state_dict(checkpoint['state_dict'])
     
     #END LOAD NEURAL NETWORK
-    
-    # while not game_over:
-    #     action_dict = {}
-    #     for agent_id, agent in enumerate(agents):
-    #         if agent_id == 0:
-    #             action = env.action_space.sample()
-    #             while action not in env.game.get_moves():
-    #                 action = env.action_space.sample()
-    #             if env.game.player == 1:
-    #                 print("player (1), random decision:", action+1)
-    #         else:
-    #             #winner = evaluate_nets(args, 1, env.game)
-    #             winner = evaluate_position(args, env.game, current_cnet)
-    #             action = np.argmax(winner)
-    #             if env.game.player == 0:
-    #                 print("player (2), MCTS decision:", action+1)
-    #         action_dict[agent_id] = action
+    t = alphabeta()
+    while not game_over:
+        action_dict = {}
+        for agent_id, agent in enumerate(agents):
+            if agent_id == 0:
+                action = env.action_space.sample()
+                while action not in env.game.get_moves():
+                    action = env.action_space.sample()
+                if env.game.player == 1:
+                     col = t.student_move(env.game)
+                     action = col
+            else:
+                #winner = evaluate_nets(args, 1, env.game)
+                winner = evaluate_position(args, env.game, current_cnet)
+                action = np.argmax(winner)
+                if env.game.player == 0:
+                    print("player (2), MCTS decision:", action+1)
+            action_dict[agent_id] = action
         
-    #     obses, rewards, game_over, info = env.step(action_dict)
-    #     env.render()
-        #print(env.game.current_board)
+        obses, rewards, game_over, info = env.step(action_dict)
+        env.render()
+        print(env.game.current_board)
 
-        # if game_over:
-        #     print("WINNER: ", obses[0]['winner'])
+        if game_over:
+            print("WINNER: ", obses[0]['winner'])
 
 
 
