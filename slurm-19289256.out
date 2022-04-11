@@ -1,165 +1,0 @@
-04/07/2022 01:58:02 PM [INFO]: Preparing model for multi-process MCTS...
-04/07/2022 01:58:02 PM [INFO]: Loaded cc4_current_net__iter5.pth.tar model.
-04/07/2022 01:58:02 PM [INFO]: Spawning 14 processes...
-START TIME:  13:57:56
-04/07/2022 01:58:05 PM [INFO]: [CPU: 3]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:58:05 PM [INFO]: [CPU: 3]: Game 0
-04/07/2022 01:58:07 PM [INFO]: [CPU: 7]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:58:07 PM [INFO]: [CPU: 7]: Game 0
-04/07/2022 01:58:07 PM [INFO]: [CPU: 1]: Starting MCTS self-play...
-04/07/2022 01:58:07 PM [INFO]: [CPU: 2]: Starting MCTS self-play...
-04/07/2022 01:58:07 PM [INFO]: [CPU: 6]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]  0%|          | 0/1 [00:00<?, ?it/s]  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:58:07 PM [INFO]: [CPU: 6]: Game 0
-04/07/2022 01:58:07 PM [INFO]: [CPU: 1]: Game 0
-04/07/2022 01:58:07 PM [INFO]: [CPU: 2]: Game 0
-04/07/2022 01:58:07 PM [INFO]: [CPU: 5]: Starting MCTS self-play...
-04/07/2022 01:58:07 PM [INFO]: [CPU: 4]: Starting MCTS self-play...
-04/07/2022 01:58:07 PM [INFO]: [CPU: 10]: Starting MCTS self-play...
-04/07/2022 01:58:07 PM [INFO]: [CPU: 0]: Starting MCTS self-play...
-04/07/2022 01:58:07 PM [INFO]: [CPU: 8]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:58:07 PM [INFO]: [CPU: 5]: Game 0
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:58:07 PM [INFO]: [CPU: 10]: Game 0
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:58:07 PM [INFO]: [CPU: 4]: Game 0
-  0%|          | 0/1 [00:00<?, ?it/s]  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:58:07 PM [INFO]: [CPU: 8]: Game 0
-04/07/2022 01:58:07 PM [INFO]: [CPU: 0]: Game 0
-04/07/2022 01:58:07 PM [INFO]: [CPU: 11]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:58:07 PM [INFO]: [CPU: 11]: Game 0
-04/07/2022 01:58:07 PM [INFO]: [CPU: 12]: Starting MCTS self-play...
-04/07/2022 01:58:07 PM [INFO]: [CPU: 9]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:58:07 PM [INFO]: [CPU: 12]: Game 0
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:58:07 PM [INFO]: [CPU: 9]: Game 0
-04/07/2022 01:58:07 PM [INFO]: [CPU: 13]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:58:07 PM [INFO]: [CPU: 13]: Game 0
-  0%|          | 0/1 [00:03<?, ?it/s]
-  0%|          | 0/1 [00:03<?, ?it/s]
-  0%|          | 0/1 [00:03<?, ?it/s]Process Process-2:
-
-  0%|          | 0/1 [00:03<?, ?it/s]
-Process Process-6:
-Process Process-5:
-  0%|          | 0/1 [00:03<?, ?it/s]Process Process-14:
-
-  0%|          | 0/1 [00:03<?, ?it/s]
-Process Process-12:
-Process Process-9:
-Traceback (most recent call last):
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-Traceback (most recent call last):
-Traceback (most recent call last):
-Traceback (most recent call last):
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 143, in UCT_search
-    child_priors, value_estimate = net(encoded_s)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 143, in UCT_search
-    child_priors, value_estimate = net(encoded_s)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
-    return forward_call(*input, **kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 143, in UCT_search
-    child_priors, value_estimate = net(encoded_s)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
-    return forward_call(*input, **kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/alpha_net_c4.py", line 89, in forward
-    s = self.conv(s)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
-    return forward_call(*input, **kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 143, in UCT_search
-    child_priors, value_estimate = net(encoded_s)
-  File "/home/x_aolss/gym_connect4/gym-connect4/alpha_net_c4.py", line 89, in forward
-    s = self.conv(s)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
-    return forward_call(*input, **kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/alpha_net_c4.py", line 89, in forward
-    s = self.conv(s)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
-    return forward_call(*input, **kwargs)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
-    return forward_call(*input, **kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/alpha_net_c4.py", line 32, in forward
-    s = F.relu(self.bn1(self.conv1(s)))
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
-    return forward_call(*input, **kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/alpha_net_c4.py", line 89, in forward
-    s = self.conv(s)
-  File "/home/x_aolss/gym_connect4/gym-connect4/alpha_net_c4.py", line 32, in forward
-    s = F.relu(self.bn1(self.conv1(s)))
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
-    return forward_call(*input, **kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/alpha_net_c4.py", line 32, in forward
-    s = F.relu(self.bn1(self.conv1(s)))
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
-    return forward_call(*input, **kwargs)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
-    return forward_call(*input, **kwargs)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 447, in forward
-    return self._conv_forward(input, self.weight, self.bias)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
-    return forward_call(*input, **kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/alpha_net_c4.py", line 32, in forward
-    s = F.relu(self.bn1(self.conv1(s)))
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 447, in forward
-    return self._conv_forward(input, self.weight, self.bias)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 447, in forward
-    return self._conv_forward(input, self.weight, self.bias)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 443, in _conv_forward
-    return F.conv2d(input, weight, bias, self.stride,
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
-    return forward_call(*input, **kwargs)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 443, in _conv_forward
-    return F.conv2d(input, weight, bias, self.stride,
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 447, in forward
-    return self._conv_forward(input, self.weight, self.bias)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 443, in _conv_forward
-    return F.conv2d(input, weight, bias, self.stride,
-RuntimeError: cuDNN error: CUDNN_STATUS_INTERNAL_ERROR
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 443, in _conv_forward
-    return F.conv2d(input, weight, bias, self.stride,
-RuntimeError: cuDNN error: CUDNN_STATUS_NOT_INITIALIZED
-RuntimeError: cuDNN error: CUDNN_STATUS_NOT_INITIALIZED
-RuntimeError: cuDNN error: CUDNN_STATUS_INTERNAL_ERROR
-slurmstepd: error: *** JOB 19289256 ON n124 CANCELLED AT 2022-04-07T13:58:58 ***

@@ -1,531 +1,0 @@
-04/07/2022 01:52:26 PM [INFO]: Preparing model for multi-process MCTS...
-04/07/2022 01:52:26 PM [INFO]: Initialized model.
-04/07/2022 01:52:26 PM [INFO]: Spawning 32 processes...
-START TIME:  13:52:12
-04/07/2022 01:52:36 PM [INFO]: [CPU: 7]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:36 PM [INFO]: [CPU: 7]: Game 0
-04/07/2022 01:52:36 PM [INFO]: [CPU: 2]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:36 PM [INFO]: [CPU: 2]: Game 0
-04/07/2022 01:52:36 PM [INFO]: [CPU: 0]: Starting MCTS self-play...
-04/07/2022 01:52:36 PM [INFO]: [CPU: 12]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:36 PM [INFO]: [CPU: 0]: Game 0
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:36 PM [INFO]: [CPU: 3]: Starting MCTS self-play...
-04/07/2022 01:52:36 PM [INFO]: [CPU: 12]: Game 0
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:36 PM [INFO]: [CPU: 3]: Game 0
-04/07/2022 01:52:36 PM [INFO]: [CPU: 1]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:36 PM [INFO]: [CPU: 1]: Game 0
-04/07/2022 01:52:36 PM [INFO]: [CPU: 4]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:36 PM [INFO]: [CPU: 4]: Game 0
-04/07/2022 01:52:37 PM [INFO]: [CPU: 6]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:37 PM [INFO]: [CPU: 6]: Game 0
-04/07/2022 01:52:37 PM [INFO]: [CPU: 9]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:37 PM [INFO]: [CPU: 9]: Game 0
-04/07/2022 01:52:37 PM [INFO]: [CPU: 5]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:37 PM [INFO]: [CPU: 5]: Game 0
-04/07/2022 01:52:37 PM [INFO]: [CPU: 8]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:37 PM [INFO]: [CPU: 8]: Game 0
-04/07/2022 01:52:37 PM [INFO]: [CPU: 10]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:37 PM [INFO]: [CPU: 10]: Game 0
-04/07/2022 01:52:38 PM [INFO]: [CPU: 11]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:38 PM [INFO]: [CPU: 11]: Game 0
-04/07/2022 01:52:39 PM [INFO]: [CPU: 14]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 14]: Game 0
-04/07/2022 01:52:39 PM [INFO]: [CPU: 21]: Starting MCTS self-play...
-04/07/2022 01:52:39 PM [INFO]: [CPU: 19]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 21]: Game 0
-04/07/2022 01:52:39 PM [INFO]: [CPU: 15]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 19]: Game 0
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 15]: Game 0
-04/07/2022 01:52:39 PM [INFO]: [CPU: 20]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 20]: Game 0
-04/07/2022 01:52:39 PM [INFO]: [CPU: 17]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 17]: Game 0
-04/07/2022 01:52:39 PM [INFO]: [CPU: 22]: Starting MCTS self-play...
-04/07/2022 01:52:39 PM [INFO]: [CPU: 13]: Starting MCTS self-play...
-04/07/2022 01:52:39 PM [INFO]: [CPU: 25]: Starting MCTS self-play...
-04/07/2022 01:52:39 PM [INFO]: [CPU: 16]: Starting MCTS self-play...
-04/07/2022 01:52:39 PM [INFO]: [CPU: 24]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 22]: Game 0
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 24]: Game 0
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 13]: Game 0
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 25]: Game 0
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 16]: Game 0
-04/07/2022 01:52:39 PM [INFO]: [CPU: 18]: Starting MCTS self-play...
-04/07/2022 01:52:39 PM [INFO]: [CPU: 26]: Starting MCTS self-play...
-04/07/2022 01:52:39 PM [INFO]: [CPU: 27]: Starting MCTS self-play...
-04/07/2022 01:52:39 PM [INFO]: [CPU: 30]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 30]: Game 0
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 27]: Game 0
-04/07/2022 01:52:39 PM [INFO]: [CPU: 23]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 18]: Game 0
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 26]: Game 0
-04/07/2022 01:52:39 PM [INFO]: [CPU: 31]: Starting MCTS self-play...
-04/07/2022 01:52:39 PM [INFO]: [CPU: 28]: Starting MCTS self-play...
-04/07/2022 01:52:39 PM [INFO]: [CPU: 29]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 23]: Game 0
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 31]: Game 0
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 28]: Game 0
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:52:39 PM [INFO]: [CPU: 29]: Game 0
-  0%|          | 0/1 [00:01<?, ?it/s]
-  0%|          | 0/1 [00:01<?, ?it/s]
-  0%|          | 0/1 [00:01<?, ?it/s]  0%|          | 0/1 [00:01<?, ?it/s]
-  0%|          | 0/1 [00:01<?, ?it/s]
-Process Process-24:
-
-  0%|          | 0/1 [00:01<?, ?it/s]Process Process-12:
-Process Process-29:
-
-  0%|          | 0/1 [00:01<?, ?it/s]Process Process-31:
-  0%|          | 0/1 [00:03<?, ?it/s]Process Process-18:
-
-
-  0%|          | 0/1 [00:01<?, ?it/s]Process Process-15:
-
-  0%|          | 0/1 [00:01<?, ?it/s]  0%|          | 0/1 [00:03<?, ?it/s]
-Process Process-22:
-
-Process Process-4:
-  0%|          | 0/1 [00:03<?, ?it/s]  0%|          | 0/1 [00:03<?, ?it/s]
-  0%|          | 0/1 [00:03<?, ?it/s]
-Process Process-20:
-  0%|          | 0/1 [00:03<?, ?it/s]Process Process-10:
-  0%|          | 0/1 [00:03<?, ?it/s]
-Process Process-21:
-
-
-Process Process-9:
-Process Process-5:
-Process Process-7:
-Process Process-6:
-Process Process-3:
-  0%|          | 0/1 [00:03<?, ?it/s]
-Process Process-11:
-  0%|          | 0/1 [00:01<?, ?it/s]
-  0%|          | 0/1 [00:01<?, ?it/s]
-Process Process-25:
-Process Process-19:
-  0%|          | 0/1 [00:01<?, ?it/s]
-Process Process-32:
-  0%|          | 0/1 [00:01<?, ?it/s]
-Process Process-17:
-  0%|          | 0/1 [00:03<?, ?it/s]
-Process Process-2:
-  0%|          | 0/1 [00:01<?, ?it/s]
-Process Process-16:
-  0%|          | 0/1 [00:01<?, ?it/s]
-  0%|          | 0/1 [00:04<?, ?it/s]
-Process Process-30:
-  0%|          | 0/1 [00:01<?, ?it/s]
-Process Process-8:
-Process Process-14:
-  0%|          | 0/1 [00:01<?, ?it/s]
-Process Process-26:
-  0%|          | 0/1 [00:04<?, ?it/s]
-  0%|          | 0/1 [00:01<?, ?it/s]Traceback (most recent call last):
-
-Traceback (most recent call last):
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-Process Process-27:
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-Process Process-1:
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-Traceback (most recent call last):
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-Traceback (most recent call last):
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-Traceback (most recent call last):
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-Traceback (most recent call last):
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-Traceback (most recent call last):
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-Traceback (most recent call last):
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-Traceback (most recent call last):
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-Traceback (most recent call last):
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-Traceback (most recent call last):
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-Traceback (most recent call last):
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-Traceback (most recent call last):
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-Traceback (most recent call last):
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-Traceback (most recent call last):
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  0%|          | 0/1 [00:04<?, ?it/s]
-Process Process-13:
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  0%|          | 0/1 [00:01<?, ?it/s]
-Process Process-28:
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-  0%|          | 0/1 [00:01<?, ?it/s]
-Process Process-23:
-Traceback (most recent call last):
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 315, in _bootstrap
-    self.run()
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 187, in MCTS_self_play
-    root = UCT_search(current_board,777,connectnet,t)
-  File "/home/x_aolss/gym_connect4/gym-connect4/MCTS_c4.py", line 136, in UCT_search
-    encoded_s = torch.from_numpy(encoded_s).cuda().float()
-RuntimeError: CUDA error: out of memory
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-04/07/2022 01:52:46 PM [INFO]: Finished multi-process MCTS!
-04/07/2022 01:52:46 PM [INFO]: Loading training data...
-04/07/2022 01:52:46 PM [INFO]: Loaded data from ./datasets/iter_5/.
-04/07/2022 01:52:46 PM [INFO]: Loaded checkpoint model cc4_current_net__iter5.pth.tar.
-FINISHED SELF PLAY:  13:52:46
-Traceback (most recent call last):
-  File "/home/x_aolss/gym_connect4/gym-connect4/game.py", line 45, in <module>
-    train_connectnet(args, iteration=5, new_optim_state=True)
-  File "/home/x_aolss/gym_connect4/gym-connect4/train_c4.py", line 154, in train_connectnet
-    train(net, datasets, optimizer, scheduler, start_epoch, 0, args, iteration)
-  File "/home/x_aolss/gym_connect4/gym-connect4/train_c4.py", line 67, in train
-    train_set = board_data(dataset)
-  File "/home/x_aolss/gym_connect4/gym-connect4/alpha_net_c4.py", line 14, in __init__
-    self.X = dataset[:,0]
-IndexError: too many indices for array: array is 1-dimensional, but 2 were indexed

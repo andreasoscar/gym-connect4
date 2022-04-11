@@ -111,6 +111,7 @@ class Connect4Env(gym.Env):
         else:
             raise ValueError('Invalid player ID %s' % player)
         return np.flip(board, axis=0).copy()
+    
 
     def _get_action_mask(self, player) -> np.ndarray:
         if player == self.game.player ^ 1:
@@ -187,7 +188,10 @@ class Connect4:
                         num_updated += 1
                 if num_updated == 0:
                     break
-
+    
+    def get_current_board(self):
+        return self.current_board
+    
     def clone(self):
         clone = Connect4()
         clone.bitboard = copy.deepcopy(self.bitboard)

@@ -1,8 +1,0 @@
-04/06/2022 03:48:35 PM [INFO]: Preparing model for MCTS...
-04/06/2022 03:48:35 PM [INFO]: Loaded cc4_current_net__iter3.pth.tar model.
-04/06/2022 03:48:35 PM [INFO]: [CPU: 0]: Starting MCTS self-play...
-START TIME:  15:48:35
-  0%|          | 0/5 [00:00<?, ?it/s]04/06/2022 03:48:35 PM [INFO]: [CPU: 0]: Game 0
- 20%|██        | 1/5 [01:25<05:41, 85.40s/it]04/06/2022 03:50:00 PM [INFO]: [CPU: 0]: Game 1
- 40%|████      | 2/5 [02:30<03:39, 73.20s/it]04/06/2022 03:51:05 PM [INFO]: [CPU: 0]: Game 2
-slurmstepd: error: *** JOB 19277051 ON n1929 CANCELLED AT 2022-04-06T15:52:19 ***

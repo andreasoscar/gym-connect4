@@ -6,7 +6,7 @@ import os
 import gym as gym 
 import time
 import torch
-from alphabeta import alphabeta
+from minimax import minimax
 from MCTS_c4 import run_MCTS
 from train_c4 import train_connectnet
 from argparse import ArgumentParser
@@ -71,7 +71,9 @@ if __name__ == "__main__":
     current_cnet.load_state_dict(checkpoint['state_dict'])
     
     #END LOAD NEURAL NETWORK
-    t = alphabeta()
+    
+    
+    t = minimax()
     while not game_over:
         action_dict = {}
         for agent_id, agent in enumerate(agents):
@@ -80,7 +82,9 @@ if __name__ == "__main__":
                 while action not in env.game.get_moves():
                     action = env.action_space.sample()
                 if env.game.player == 1:
-                     col = t.student_move(env.game)
+                     print("Student move:1111 ")
+                     col = t.student_move(env.game.get_current_board())
+                     print("Student move: ", col)
                      action = col
             else:
                 #winner = evaluate_nets(args, 1, env.game)

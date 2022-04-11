@@ -1,58 +1,0 @@
-04/07/2022 01:54:57 PM [INFO]: Preparing model for multi-process MCTS...
-04/07/2022 01:54:57 PM [INFO]: Loaded cc4_current_net__iter5.pth.tar model.
-04/07/2022 01:54:57 PM [INFO]: Spawning 32 processes...
-START TIME:  13:54:52
-04/07/2022 01:55:00 PM [INFO]: [CPU: 1]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:55:00 PM [INFO]: [CPU: 1]: Game 0
-04/07/2022 01:55:01 PM [INFO]: [CPU: 2]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:55:01 PM [INFO]: [CPU: 2]: Game 0
-04/07/2022 01:55:02 PM [INFO]: [CPU: 7]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:55:02 PM [INFO]: [CPU: 7]: Game 0
-04/07/2022 01:55:02 PM [INFO]: [CPU: 5]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:55:02 PM [INFO]: [CPU: 5]: Game 0
-04/07/2022 01:55:03 PM [INFO]: [CPU: 14]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:55:03 PM [INFO]: [CPU: 14]: Game 0
-04/07/2022 01:55:05 PM [INFO]: [CPU: 31]: Starting MCTS self-play...
-04/07/2022 01:55:05 PM [INFO]: [CPU: 26]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:55:05 PM [INFO]: [CPU: 31]: Game 0
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:55:05 PM [INFO]: [CPU: 26]: Game 0
-04/07/2022 01:55:05 PM [INFO]: [CPU: 22]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:55:05 PM [INFO]: [CPU: 22]: Game 0
-04/07/2022 01:55:05 PM [INFO]: [CPU: 21]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:55:05 PM [INFO]: [CPU: 21]: Game 0
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/spawn.py", line 116, in spawn_main
-    exitcode = _main(fd, parent_sentinel)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/spawn.py", line 126, in _main
-    self = reduction.pickle.load(from_parent)
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/multiprocessing/reductions.py", line 111, in rebuild_cuda_tensor
-    storage = storage_cls._new_shared_cuda(
-  File "/home/x_aolss/.conda/envs/myownenv/lib/python3.9/site-packages/torch/storage.py", line 630, in _new_shared_cuda
-    return eval(cls.__module__)._UntypedStorage._new_shared_cuda(*args, **kwargs)
-RuntimeError: CUDA error: all CUDA-capable devices are busy or unavailable
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-04/07/2022 01:55:05 PM [INFO]: [CPU: 28]: Starting MCTS self-play...
-04/07/2022 01:55:05 PM [INFO]: [CPU: 24]: Starting MCTS self-play...
-  0%|          | 0/1 [00:00<?, ?it/s]  0%|          | 0/1 [00:00<?, ?it/s]04/07/2022 01:55:05 PM [INFO]: [CPU: 28]: Game 0
-04/07/2022 01:55:05 PM [INFO]: [CPU: 24]: Game 0
-04/07/2022 01:55:09 PM [INFO]: Finished multi-process MCTS!
-04/07/2022 01:55:09 PM [INFO]: Loading training data...
-04/07/2022 01:55:09 PM [INFO]: Loaded data from ./datasets/iter_5/.
-04/07/2022 01:55:09 PM [INFO]: Loaded checkpoint model cc4_current_net__iter5.pth.tar.
-FINISHED SELF PLAY:  13:55:09
-Traceback (most recent call last):
-  File "/home/x_aolss/gym_connect4/gym-connect4/game.py", line 45, in <module>
-    train_connectnet(args, iteration=5, new_optim_state=True)
-  File "/home/x_aolss/gym_connect4/gym-connect4/train_c4.py", line 154, in train_connectnet
-    train(net, datasets, optimizer, scheduler, start_epoch, 0, args, iteration)
-  File "/home/x_aolss/gym_connect4/gym-connect4/train_c4.py", line 67, in train
-    train_set = board_data(dataset)
-  File "/home/x_aolss/gym_connect4/gym-connect4/alpha_net_c4.py", line 14, in __init__
-    self.X = dataset[:,0]
-IndexError: too many indices for array: array is 1-dimensional, but 2 were indexed
-[W CudaIPCTypes.cpp:15] Producer process has been terminated before all shared CUDA tensors released. See Note [Sharing CUDA tensors]
-/home/x_aolss/.conda/envs/myownenv/lib/python3.9/multiprocessing/resource_tracker.py:216: UserWarning: resource_tracker: There appear to be 11 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '
-slurmstepd: error: Detected 224 oom-kill event(s) in StepId=19289249.batch cgroup. Some of your processes may have been killed by the cgroup out-of-memory handler.

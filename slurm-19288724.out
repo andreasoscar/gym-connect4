@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "game.py", line 3, in <module>
-    import gym_connect4
-  File "/home/x_aolss/gym_connect4/gym-connect4/gym_connect4/__init__.py", line 1, in <module>
-    from gym.envs.registration import register
-ModuleNotFoundError: No module named 'gym'

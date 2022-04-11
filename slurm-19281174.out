@@ -1,35 +1,0 @@
-04/07/2022 12:06:41 AM [INFO]: Preparing model for multi-process MCTS...
-04/07/2022 12:06:41 AM [INFO]: Loaded cc4_current_net__iter3.pth.tar model.
-04/07/2022 12:06:41 AM [INFO]: Spawning 8 processes...
-START TIME:  00:06:27
-04/07/2022 12:06:45 AM [INFO]: [CPU: 0]: Starting MCTS self-play...
-  0%|          | 0/5 [00:00<?, ?it/s]04/07/2022 12:06:45 AM [INFO]: [CPU: 0]: Game 0
-04/07/2022 12:06:45 AM [INFO]: [CPU: 7]: Starting MCTS self-play...
-04/07/2022 12:06:45 AM [INFO]: [CPU: 2]: Starting MCTS self-play...
-  0%|          | 0/5 [00:00<?, ?it/s]04/07/2022 12:06:45 AM [INFO]: [CPU: 7]: Game 0
-  0%|          | 0/5 [00:00<?, ?it/s]04/07/2022 12:06:45 AM [INFO]: [CPU: 2]: Game 0
-04/07/2022 12:06:45 AM [INFO]: [CPU: 1]: Starting MCTS self-play...
-  0%|          | 0/5 [00:00<?, ?it/s]04/07/2022 12:06:45 AM [INFO]: [CPU: 1]: Game 0
-04/07/2022 12:06:45 AM [INFO]: [CPU: 5]: Starting MCTS self-play...
-04/07/2022 12:06:45 AM [INFO]: [CPU: 3]: Starting MCTS self-play...
-  0%|          | 0/5 [00:00<?, ?it/s]04/07/2022 12:06:45 AM [INFO]: [CPU: 5]: Game 0
-  0%|          | 0/5 [00:00<?, ?it/s]04/07/2022 12:06:45 AM [INFO]: [CPU: 3]: Game 0
-04/07/2022 12:06:45 AM [INFO]: [CPU: 4]: Starting MCTS self-play...
-  0%|          | 0/5 [00:00<?, ?it/s]04/07/2022 12:06:45 AM [INFO]: [CPU: 4]: Game 0
-04/07/2022 12:06:45 AM [INFO]: [CPU: 6]: Starting MCTS self-play...
-  0%|          | 0/5 [00:00<?, ?it/s]04/07/2022 12:06:45 AM [INFO]: [CPU: 6]: Game 0
- 20%|██        | 1/5 [01:14<04:59, 74.79s/it]04/07/2022 12:08:00 AM [INFO]: [CPU: 3]: Game 1
- 20%|██        | 1/5 [01:29<05:57, 89.26s/it]04/07/2022 12:08:14 AM [INFO]: [CPU: 0]: Game 1
- 20%|██        | 1/5 [01:53<07:33, 113.28s/it]04/07/2022 12:08:38 AM [INFO]: [CPU: 5]: Game 1
- 20%|██        | 1/5 [01:58<07:52, 118.02s/it]04/07/2022 12:08:43 AM [INFO]: [CPU: 4]: Game 1
- 20%|██        | 1/5 [02:02<08:11, 122.84s/it]04/07/2022 12:08:48 AM [INFO]: [CPU: 6]: Game 1
- 20%|██        | 1/5 [02:17<09:09, 137.39s/it]04/07/2022 12:09:02 AM [INFO]: [CPU: 1]: Game 1
- 20%|██        | 1/5 [02:41<10:45, 161.36s/it]04/07/2022 12:09:26 AM [INFO]: [CPU: 7]: Game 1
- 20%|██        | 1/5 [03:10<12:40, 190.00s/it]04/07/2022 12:09:55 AM [INFO]: [CPU: 2]: Game 1
- 40%|████      | 2/5 [03:29<05:22, 107.48s/it]04/07/2022 12:10:14 AM [INFO]: [CPU: 0]: Game 2
- 40%|████      | 2/5 [03:29<05:07, 102.39s/it]04/07/2022 12:10:14 AM [INFO]: [CPU: 4]: Game 2
- 40%|████      | 2/5 [03:29<05:04, 101.55s/it]04/07/2022 12:10:14 AM [INFO]: [CPU: 6]: Game 2
- 40%|████      | 2/5 [03:48<05:02, 100.89s/it]04/07/2022 12:10:33 AM [INFO]: [CPU: 2]: Game 2
- 40%|████      | 2/5 [03:48<05:31, 110.35s/it]04/07/2022 12:10:34 AM [INFO]: [CPU: 1]: Game 2
- 40%|████      | 2/5 [03:58<05:35, 111.74s/it]04/07/2022 12:10:43 AM [INFO]: [CPU: 7]: Game 2
-slurmstepd: error: *** JOB 19281174 ON n1256 CANCELLED AT 2022-04-07T00:10:52 ***
