@@ -25,10 +25,10 @@ if __name__ == "__main__":
     parser.add_argument("--MCTS_num_processes", type=int, default=12, help="Number of processes to run MCTS self-plays")
     parser.add_argument("--num_games_per_MCTS_process", type=int, default=120, help="Number of games to simulate per MCTS self-play process")
     parser.add_argument("--temperature_MCTS", type=float, default=1.1, help="Temperature for first 10 moves of each MCTS self-play")
-    parser.add_argument("--num_evaluator_games", type=int, default=3, help="No of games to play to evaluate neural nets")
+    parser.add_argument("--num_evaluator_games", type=int, default=24, help="No of games to play to evaluate neural nets")
     parser.add_argument("--neural_net_name", type=str, default="cc4_current_net_", help="Name of neural net")
     parser.add_argument("--batch_size", type=int, default=32, help="Training batch size")
-    parser.add_argument("--num_epochs", type=int, default=200, help="No of epochs")
+    parser.add_argument("--num_epochs", type=int, default=120, help="No of epochs")
     parser.add_argument("--lr", type=float, default=0.001, help="learning rate")
     parser.add_argument("--gradient_acc_steps", type=int, default=1, help="Number of steps of gradient accumulation")
     parser.add_argument("--max_norm", type=float, default=1.0, help="Clipped gradient norm")
@@ -38,28 +38,10 @@ if __name__ == "__main__":
 
 
    
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print("START SELF PLAY: ", current_time)
-    # for i in range(10):
-    #     run_MCTS(args, start_idx=0, iteration=5)
-    #     train_connectnet(args, iteration=5, new_optim_state=True)
-    #print(torch.cuda.current_device())
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print("FINISHED SELF PLAY: ", current_time)
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print("START EVALUATION", current_time)
-    #evaluate_nets(args, iteration_1=3, iteration_2=5)
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print("END EVALUATION", current_time)
-    #evaluate_nets(args, iteration_1=5, iteration_2=1)
     
     
     
-    def test_random():
+    def test_random(iteration):
         cuda = torch.cuda.is_available()
         #LOAD NEURAL NETWORK
         
@@ -85,20 +67,17 @@ if __name__ == "__main__":
         games_completed = 0
         #depth = 2
         winners = [0,0]
-        while games_completed < 20:
+        while games_completed < args.num_evaluator_games:
             while not game_over:
                     action_dict = {}
                 
                     action = env.action_space.sample()
-                    #col = t.student_move(env.game.get_current_board())
-                    print(env.game.player, "<----- here")
                     action = random.choice(env.game.get_moves())
                     action_dict[0] = action
                     print("bot: ", action+1)
                     policy = evaluate_position(args, env.game, current_cnet)
                     action_dict[1] = np.argmax(policy)
                     print("player (2), MCTS decision:", np.argmax(policy)+1)
-                    print(action_dict)
                     obses, rewards, game_over, info = env.step(action_dict)
                     env.render()
                     print(env.game.current_board)
@@ -107,11 +86,11 @@ if __name__ == "__main__":
                 winner = obses[0]['winner']
                 winners[winner] = winners[winner] + 1
                 games_completed += 1
-                if games_completed == 20:
-                    f = open("minimax_log/log.txt", "a")
+                if games_completed == args.num_evaluator_games:
+                    f = open("random_log/log.txt", "a")
                     now = datetime.now()
                     current_time = now.strftime("%H:%M:%S")
-                    f.write(current_time + ", win ratio: " + str(winners[1]/args.num_evaluator_games) + " vs depth: " + str(args.minimax_depth) + "\n")
+                    f.write(current_time + ", win ratio: " + str(winners[1]/args.num_evaluator_games) + " vs random after " + str(iteration*args.num_games_per_MCTS_process) + " games "+"\n")
                     f.close()
                     game_over = True
                 else:
@@ -158,14 +137,14 @@ if __name__ == "__main__":
             
                 action = env.action_space.sample()
                 #col = t.student_move(env.game.get_current_board())
-                print(env.game.player, "<----- here")
+            
                 action = random.choice(env.game.get_moves())
                 action_dict[0] = action
                 print("bot: ", action+1)
                 policy = evaluate_position(args, env.game, current_cnet)
                 action_dict[1] = np.argmax(policy)
                 print("player (2), MCTS decision:", np.argmax(policy)+1)
-                print(action_dict)
+
                 obses, rewards, game_over, info = env.step(action_dict)
                 env.render()
                 print(env.game.current_board)
@@ -188,5 +167,25 @@ if __name__ == "__main__":
                     print("WINNER: ", obses[0]['winner'])
                     break
 
-    evaluate_minimax_MCTS()
+    #evaluate_minimax_MCTS()
 
+
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print("START SELF PLAY: ", current_time)
+    for i in range(10):
+        run_MCTS(args, start_idx=i*args.num_games_per_MCTS_process, iteration=0)
+        train_connectnet(args, iteration=0, new_optim_state=True)
+        test_random(i)
+    #print(torch.cuda.current_device())
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print("FINISHED SELF PLAY: ", current_time)
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print("START EVALUATION", current_time)
+    #evaluate_nets(args, iteration_1=3, iteration_2=5)
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print("END EVALUATION", current_time)
+    #evaluate_nets(args, iteration_1=5, iteration_2=1)
