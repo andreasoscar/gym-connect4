@@ -33,7 +33,7 @@ if __name__ == "__main__":
     parser.add_argument("--gradient_acc_steps", type=int, default=1, help="Number of steps of gradient accumulation")
     parser.add_argument("--max_norm", type=float, default=1.0, help="Clipped gradient norm")
     parser.add_argument("--print_board", type= bool, default=False, help="show board")
-    parser.add_argument("--minimax_depth", type=int, default=3, help="set minimax depth")
+    parser.add_argument("--minimax_depth", type=int, default=1, help="set minimax depth")
     args = parser.parse_args()
 
 
@@ -41,12 +41,13 @@ if __name__ == "__main__":
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     print("START SELF PLAY: ", current_time)
-    #run_MCTS(args, start_idx=0, iteration=5)
+    # for i in range(10):
+    #     run_MCTS(args, start_idx=0, iteration=5)
+    #     train_connectnet(args, iteration=5, new_optim_state=True)
     #print(torch.cuda.current_device())
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     print("FINISHED SELF PLAY: ", current_time)
-    #train_connectnet(args, iteration=5, new_optim_state=True)
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     print("START EVALUATION", current_time)
@@ -58,13 +59,75 @@ if __name__ == "__main__":
     
     
     
+    def test_random():
+        cuda = torch.cuda.is_available()
+        #LOAD NEURAL NETWORK
+        
+        current_net="%s_iter%d.pth.tar" % (args.neural_net_name, 0);
+        current_net_filename = os.path.join("",\
+                                        current_net)
+        current_cnet = ConnectNet()
+        
+        current_cnet.share_memory()
+        current_cnet.eval()
+        if not cuda:
+            checkpoint = torch.load(current_net_filename, map_location=torch.device('cpu'))
+        else:
+            checkpoint = torch.load(current_net_filename)
+        current_cnet.load_state_dict(checkpoint['state_dict'])
+        
+        #END LOAD NEURAL NETWORK
+    
+        agents = ['Agent1()', 'Agent2()']
+        obses = env.reset()  # dict: {0: obs_player_1, 1: obs_player_2}
+        game_over = False
+        
+        games_completed = 0
+        #depth = 2
+        winners = [0,0]
+        while games_completed < 20:
+            while not game_over:
+                    action_dict = {}
+                
+                    action = env.action_space.sample()
+                    #col = t.student_move(env.game.get_current_board())
+                    print(env.game.player, "<----- here")
+                    action = random.choice(env.game.get_moves())
+                    action_dict[0] = action
+                    print("bot: ", action+1)
+                    policy = evaluate_position(args, env.game, current_cnet)
+                    action_dict[1] = np.argmax(policy)
+                    print("player (2), MCTS decision:", np.argmax(policy)+1)
+                    print(action_dict)
+                    obses, rewards, game_over, info = env.step(action_dict)
+                    env.render()
+                    print(env.game.current_board)
+                    
+            if game_over:
+                winner = obses[0]['winner']
+                winners[winner] = winners[winner] + 1
+                games_completed += 1
+                if games_completed == 20:
+                    f = open("minimax_log/log.txt", "a")
+                    now = datetime.now()
+                    current_time = now.strftime("%H:%M:%S")
+                    f.write(current_time + ", win ratio: " + str(winners[1]/args.num_evaluator_games) + " vs depth: " + str(args.minimax_depth) + "\n")
+                    f.close()
+                    game_over = True
+                else:
+                    game_over = False
+                    env.reset()
+                
+                print("WINNER: ", obses[0]['winner'])
+                break
+
     
     
     def evaluate_minimax_MCTS():
         cuda = torch.cuda.is_available()
         #LOAD NEURAL NETWORK
         
-        current_net="%s_iter%d.pth.tar" % (args.neural_net_name, 5);
+        current_net="%s_iter%d.pth.tar" % (args.neural_net_name, 0);
         current_net_filename = os.path.join("",\
                                         current_net)
         current_cnet = ConnectNet()
@@ -87,31 +150,22 @@ if __name__ == "__main__":
         #depth = 2
         winners = [0,0]
         
-        while games_completed < 10:
+        while games_completed < 3:
             print("GAME: ", games_completed)
             t = minimax(args.minimax_depth)
             while not game_over:
                 action_dict = {}
-                for agent_id, agent in enumerate(agents):
-                    if agent_id == 0:
-                        action = env.action_space.sample()
-                        while action not in env.game.get_moves():
-                            action = env.action_space.sample()
-                        if env.game.player == 0:
-                            col = t.student_move(env.game.get_current_board())
-                            #col = env.action_space.sample()
-                            print("Student move: ", col)
-                            action = col
-                    else:
-                        #winner = evaluate_nets(args, 1, env.game)
-                       
-                        if env.game.player == 1:
-                             winner = evaluate_position(args, env.game, current_cnet)
-                             print(winner)
-                             action = np.argmax(winner)
-                             print("player (2), MCTS decision:", action+1)
-                    action_dict[agent_id] = action
-                
+            
+                action = env.action_space.sample()
+                #col = t.student_move(env.game.get_current_board())
+                print(env.game.player, "<----- here")
+                action = random.choice(env.game.get_moves())
+                action_dict[0] = action
+                print("bot: ", action+1)
+                policy = evaluate_position(args, env.game, current_cnet)
+                action_dict[1] = np.argmax(policy)
+                print("player (2), MCTS decision:", np.argmax(policy)+1)
+                print(action_dict)
                 obses, rewards, game_over, info = env.step(action_dict)
                 env.render()
                 print(env.game.current_board)
@@ -120,7 +174,7 @@ if __name__ == "__main__":
                     winner = obses[0]['winner']
                     winners[winner] = winners[winner] + 1
                     games_completed += 1
-                    if games_completed == 10:
+                    if games_completed == 3:
                         f = open("minimax_log/log.txt", "a")
                         now = datetime.now()
                         current_time = now.strftime("%H:%M:%S")
