@@ -5,6 +5,7 @@ import numpy as np
 import os
 import gym as gym 
 import time
+import random
 import torch
 from minimax import minimax
 from MCTS_c4 import run_MCTS
@@ -32,7 +33,7 @@ if __name__ == "__main__":
     parser.add_argument("--gradient_acc_steps", type=int, default=1, help="Number of steps of gradient accumulation")
     parser.add_argument("--max_norm", type=float, default=1.0, help="Clipped gradient norm")
     parser.add_argument("--print_board", type= bool, default=False, help="show board")
-    parser.add_argument("--minimax_depth", type=int, default=1, help="set minimax depth")
+    parser.add_argument("--minimax_depth", type=int, default=3, help="set minimax depth")
     args = parser.parse_args()
 
 
@@ -83,10 +84,10 @@ if __name__ == "__main__":
         game_over = False
         
         games_completed = 0
-        depth = 2
+        #depth = 2
         winners = [0,0]
         
-        while games_completed < args.num_evaluator_games:
+        while games_completed < 10:
             print("GAME: ", games_completed)
             t = minimax(args.minimax_depth)
             while not game_over:
@@ -96,16 +97,19 @@ if __name__ == "__main__":
                         action = env.action_space.sample()
                         while action not in env.game.get_moves():
                             action = env.action_space.sample()
-                        if env.game.player == 1:
+                        if env.game.player == 0:
                             col = t.student_move(env.game.get_current_board())
+                            #col = env.action_space.sample()
                             print("Student move: ", col)
                             action = col
                     else:
                         #winner = evaluate_nets(args, 1, env.game)
-                        winner = evaluate_position(args, env.game, current_cnet)
-                        action = np.argmax(winner)
-                        if env.game.player == 0:
-                            print("player (2), MCTS decision:", action+1)
+                       
+                        if env.game.player == 1:
+                             winner = evaluate_position(args, env.game, current_cnet)
+                             print(winner)
+                             action = np.argmax(winner)
+                             print("player (2), MCTS decision:", action+1)
                     action_dict[agent_id] = action
                 
                 obses, rewards, game_over, info = env.step(action_dict)
@@ -116,7 +120,7 @@ if __name__ == "__main__":
                     winner = obses[0]['winner']
                     winners[winner] = winners[winner] + 1
                     games_completed += 1
-                    if games_completed == args.num_evaluator_games:
+                    if games_completed == 10:
                         f = open("minimax_log/log.txt", "a")
                         now = datetime.now()
                         current_time = now.strftime("%H:%M:%S")

@@ -45,7 +45,7 @@ class minimax:
         for i in center_column:
                 center[i] = center[i] + 1
         #center should be weighted more, but if there are -1's in the row, the chances of winning is lower, so reduce its weight in that case
-        score += (4-center['X'])*center['O']
+        score += (4-center['X'])*4
 
         #horizontal samples [x,x,x,x]
         for row in range(self.COL):

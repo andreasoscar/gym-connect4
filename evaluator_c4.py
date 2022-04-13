@@ -61,10 +61,10 @@ class arena():
                                                     np.random.choice(np.array([0,1,2,3,4,5,6]), \
                                                                      p = policy)) # decode move and move piece(s)
             if (current_board.is_winner(0) or current_board.is_winner(1)) == True: # someone wins
-                if current_board.player == 0: # black wins
-                    value = -1
-                elif current_board.player == 1: # white wins
+                if current_board.player == 1: # black wins
                     value = 1
+                elif current_board.player == 0: # white wins
+                    value = -1
                 checkmate = True
         dataset.append(ed.encode_board(current_board))
         if value == -1:
@@ -88,10 +88,10 @@ class arena():
         dataset = []
         value = 0; t = 0.1
 
-        if current_board.player == 0:
-            root = UCT_search(current_board,777,nn,t)
-            policy = get_policy(root, t); #print("Policy: ", policy, "white = %s" %(str("white")))
-            return policy
+        
+        root = UCT_search(current_board,777,nn,t)
+        policy = get_policy(root, t); #print("Policy: ", policy, "white = %s" %(str("white")))
+        return policy
         
     def evaluate(self, num_games, cpu):
         current_wins = 0
