@@ -1,10 +1,12 @@
 
 import sys
+from tabnanny import check
 import gym_connect4
 import numpy as np
 import os
 import gym as gym 
 import time
+import multiprocessing as mp
 import random
 import torch
 from minimax import minimax
@@ -17,13 +19,14 @@ from evaluator_c4 import evaluate_position
 from alpha_net_c4 import ConnectNet
 from datetime import datetime
 env = gym.make('Connect4Env-v0')
-
+def foo(q):
+    q.put('hello')
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("--iteration", type=int, default=0, help="Current iteration number to resume from")
     parser.add_argument("--total_iterations", type=int, default=100, help="Total number of iterations to run")
-    parser.add_argument("--MCTS_num_processes", type=int, default=12, help="Number of processes to run MCTS self-plays")
-    parser.add_argument("--num_games_per_MCTS_process", type=int, default=120, help="Number of games to simulate per MCTS self-play process")
+    parser.add_argument("--MCTS_num_processes", type=int, default=4, help="Number of processes to run MCTS self-plays")
+    parser.add_argument("--num_games_per_MCTS_process", type=int, default=5, help="Number of games to simulate per MCTS self-play process")
     parser.add_argument("--temperature_MCTS", type=float, default=1.1, help="Temperature for first 10 moves of each MCTS self-play")
     parser.add_argument("--num_evaluator_games", type=int, default=24, help="No of games to play to evaluate neural nets")
     parser.add_argument("--neural_net_name", type=str, default="cc4_current_net_", help="Name of neural net")
@@ -45,7 +48,7 @@ if __name__ == "__main__":
         cuda = torch.cuda.is_available()
         #LOAD NEURAL NETWORK
         
-        current_net="%s_iter%d.pth.tar" % (args.neural_net_name, 0);
+        current_net="%s_iter%d.pth.tar" % (args.neural_net_name, 2);
         current_net_filename = os.path.join("",\
                                         current_net)
         current_cnet = ConnectNet()
@@ -56,7 +59,9 @@ if __name__ == "__main__":
             checkpoint = torch.load(current_net_filename, map_location=torch.device('cpu'))
         else:
             checkpoint = torch.load(current_net_filename)
+        #print(checkpoint['state_dict'].keys)
         current_cnet.load_state_dict(checkpoint['state_dict'])
+        print(current_cnet.conv)
         
         #END LOAD NEURAL NETWORK
     
@@ -70,12 +75,13 @@ if __name__ == "__main__":
         while games_completed < args.num_evaluator_games:
             while not game_over:
                     action_dict = {}
-                
+                    #print("CURRENT PLAYER: ", env.game.player)
                     action = env.action_space.sample()
                     action = random.choice(env.game.get_moves())
                     action_dict[0] = action
                     print("bot: ", action+1)
                     policy = evaluate_position(args, env.game, current_cnet)
+                    print(policy, np.argmax(policy))
                     action_dict[1] = np.argmax(policy)
                     print("player (2), MCTS decision:", np.argmax(policy)+1)
                     obses, rewards, game_over, info = env.step(action_dict)
@@ -142,6 +148,7 @@ if __name__ == "__main__":
                 action_dict[0] = action
                 print("bot: ", action+1)
                 policy = evaluate_position(args, env.game, current_cnet)
+                print(policy)
                 action_dict[1] = np.argmax(policy)
                 print("player (2), MCTS decision:", np.argmax(policy)+1)
 
@@ -173,12 +180,14 @@ if __name__ == "__main__":
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     print("START SELF PLAY: ", current_time)
-    for i in range(10):
-        run_MCTS(args, start_idx=i*args.num_games_per_MCTS_process, iteration=0)
-        train_connectnet(args, iteration=0, new_optim_state=True)
-        test_random(i)
+    #for i in range(10):
+        #run_MCTS(args, start_idx=i*args.num_games_per_MCTS_process, iteration=0)
+        #train_connectnet(args, iteration=0, new_optim_state=True)
+        #test_random(i)
     #print(torch.cuda.current_device())
     now = datetime.now()
+    #run_MCTS(args, start_idx=0, iteration=10)
+    test_random(0)
     current_time = now.strftime("%H:%M:%S")
     print("FINISHED SELF PLAY: ", current_time)
     now = datetime.now()
@@ -189,3 +198,13 @@ if __name__ == "__main__":
     current_time = now.strftime("%H:%M:%S")
     print("END EVALUATION", current_time)
     #evaluate_nets(args, iteration_1=5, iteration_2=1)
+
+
+    
+    
+    mp.set_start_method('spawn')
+    q = mp.Queue()
+    p = mp.Process(target=foo, args=(q,))
+    p.start()
+    print(q.get())
+    p.join()

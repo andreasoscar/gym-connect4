@@ -6,6 +6,7 @@ import numpy as np
 import math
 from gym_connect4.envs.connect4_env import Connect4 as c_board
 import copy
+import threading
 import torch
 import torch.multiprocessing as mp
 import encoder_decoder_c4 as ed
@@ -163,7 +164,11 @@ def get_policy(root, temp=1):
     return ((root.child_number_visits)**(1/temp))/sum(root.child_number_visits**(1/temp))
 
 def MCTS_self_play(connectnet, num_games, start_idx, cpu, args, iteration):
-    logger.info("[CPU: %d]: Starting MCTS self-play..." % cpu)
+    if torch.cuda.is_available():
+        logger.info("GPU")
+        
+    else:
+        logger.info("[CPU: %d]: Starting MCTS self-play..." % cpu)
     
     if not os.path.isdir("./datasets/iter_%d" % iteration):
         if not os.path.isdir("datasets"):
@@ -227,11 +232,15 @@ def run_MCTS(args, start_idx=0, iteration=0):
         mp.set_start_method("spawn",force=True)
         net.share_memory()
         net.eval()
+        cuda = torch.cuda.is_available()
     
         current_net_filename = os.path.join("",\
                                         net_to_play)
         if os.path.isfile(current_net_filename):
-            checkpoint = torch.load(current_net_filename)
+            if cuda:
+                checkpoint = torch.load(current_net_filename)
+            else:
+                checkpoint = torch.load(current_net_filename, map_location=torch.device('cpu'))
             net.load_state_dict(checkpoint['state_dict'])
             logger.info("Loaded %s model." % current_net_filename)
         else:
@@ -249,6 +258,7 @@ def run_MCTS(args, start_idx=0, iteration=0):
         logger.info("Spawning %d processes..." % num_processes)
         with torch.no_grad():
             for i in range(num_processes):
+                #mp.set_start_method('spawn')
                 p = mp.Process(target=MCTS_self_play, args=(net, args.num_games_per_MCTS_process, start_idx, i, args, iteration))
                 p.start()
                 processes.append(p)
