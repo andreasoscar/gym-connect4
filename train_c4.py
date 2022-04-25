@@ -76,6 +76,7 @@ def train(net, dataset, optimizer, scheduler, start_epoch, cpu, args, iteration)
         losses_per_batch = []
         for i,data in enumerate(train_loader,0):
             state, policy, value = data
+            #print(state, policy, value, "<-------")
             state, policy, value = state.float(), policy.float(), value.float()
             if cuda:
                 state, policy, value = state.cuda(), policy.cuda(), value.cuda()
@@ -153,7 +154,7 @@ def train_connectnet(args, iteration, new_optim_state):
     
     train(net, datasets, optimizer, scheduler, start_epoch, 0, args, iteration)
     f = open("cc4_log/log.txt", "a")
-    now = datetime.now()
+    now = datetime.datetime.now()
     current_time = now.strftime("%H:%M:%S")
     f.write(current_time + ", finished training net: " + str(args.neural_net_name) + ", iteration " + str(iteration) + "\n")
     f.close()

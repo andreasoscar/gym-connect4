@@ -40,15 +40,13 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
 
-   
-    
-    
+
     
     def test_random(iteration):
         cuda = torch.cuda.is_available()
         #LOAD NEURAL NETWORK
         
-        current_net="%s_iter%d.pth.tar" % (args.neural_net_name, 2);
+        current_net="%s_iter%d.pth.tar" % (args.neural_net_name, 1);
         current_net_filename = os.path.join("",\
                                         current_net)
         current_cnet = ConnectNet()
@@ -78,6 +76,7 @@ if __name__ == "__main__":
                     #print("CURRENT PLAYER: ", env.game.player)
                     action = env.action_space.sample()
                     action = random.choice(env.game.get_moves())
+                    print(env.game.get_moves(), action)
                     action_dict[0] = action
                     print("bot: ", action+1)
                     policy = evaluate_position(args, env.game, current_cnet)
@@ -86,7 +85,7 @@ if __name__ == "__main__":
                     print("player (2), MCTS decision:", np.argmax(policy)+1)
                     obses, rewards, game_over, info = env.step(action_dict)
                     env.render()
-                    print(env.game.current_board)
+                    #print(env.game.current_board)
                     
             if game_over:
                 winner = obses[0]['winner']
@@ -180,14 +179,16 @@ if __name__ == "__main__":
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     print("START SELF PLAY: ", current_time)
-    #for i in range(10):
-        #run_MCTS(args, start_idx=i*args.num_games_per_MCTS_process, iteration=0)
-        #train_connectnet(args, iteration=0, new_optim_state=True)
-        #test_random(i)
+    #test_random(0)
+    #for i in range(2):
+    #    run_MCTS(args, start_idx=i*args.num_games_per_MCTS_process, iteration=i)
+    #    train_connectnet(args, iteration=i, new_optim_state=True)
+    #    test_random(i)
+    #test_random(0)
     #print(torch.cuda.current_device())
     now = datetime.now()
-    #run_MCTS(args, start_idx=0, iteration=10)
-    test_random(0)
+    run_MCTS(args, start_idx=0, iteration=1)
+    #test_random(0)
     current_time = now.strftime("%H:%M:%S")
     print("FINISHED SELF PLAY: ", current_time)
     now = datetime.now()
@@ -202,9 +203,9 @@ if __name__ == "__main__":
 
     
     
-    mp.set_start_method('spawn')
-    q = mp.Queue()
-    p = mp.Process(target=foo, args=(q,))
-    p.start()
-    print(q.get())
-    p.join()
+    #mp.set_start_method('spawn')
+    #q = mp.Queue()
+    #p = mp.Process(target=foo, args=(q,))
+    ##p.start()
+    #print(q.get())
+    #p.join()

@@ -134,6 +134,7 @@ def UCT_search(game_state, num_reads,net,temp, max_depth = 20):
     for i in range(num_reads):
         leaf = root.select_leaf()
         encoded_s = ed.encode_board(leaf.game); encoded_s = encoded_s.transpose(2,0,1)
+        #print(encoded_s)
         if not cuda:
             encoded_s = torch.from_numpy(encoded_s).float()
             
@@ -143,7 +144,8 @@ def UCT_search(game_state, num_reads,net,temp, max_depth = 20):
             
         #   print(encoded_s.to("cuda:0"))
         #   net = encoded_s.to("cuda:0")
-        #   child_priors, value_estimate = net(encoded_s)    
+        #   child_priors, value_estimate = net(encoded_s) 
+        #print(encoded_s.shape)   
         child_priors, value_estimate = net(encoded_s)
         
         child_priors = child_priors.detach().cpu().numpy().reshape(-1); value_estimate = value_estimate.item()
@@ -194,6 +196,7 @@ def MCTS_self_play(connectnet, num_games, start_idx, cpu, args, iteration):
                  connectnet.to("cuda:0")
             root = UCT_search(current_board,777,connectnet,t)
             policy = get_policy(root, t); 
+            #print(policy, root.child_total_value)
             if args.print_board:
                 print("[CPU: %d]: Game %d POLICY:\n " % (cpu, idxx), policy)
             current_board = do_decode_n_move_pieces(current_board,\

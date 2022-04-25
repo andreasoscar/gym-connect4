@@ -6,6 +6,7 @@ from gym_connect4.envs.connect4_env import Connect4 as board
 def encode_board(board):
     board_state = board.current_board
     encoded = np.zeros([6,7,3]).astype(int)
+    #print(encoded.shape)
     encoder_dict = {"O":0, "X":1}
     for row in range(6):
         for col in range(7):
