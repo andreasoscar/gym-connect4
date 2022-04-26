@@ -36,10 +36,10 @@ class ConvBlock(nn.Module):
 class ResBlock(nn.Module):
     def __init__(self, inplanes=128, planes=128, stride=1, downsample=None):
         super(ResBlock, self).__init__()
-        self.conv1 = nn.Conv2d(inplanes, planes, kernel_size=3, stride=stride,
-                     padding=1, bias=False)
+        self.conv1 = nn.Conv2d(inplanes, planes, kernel_size=4, stride=stride,
+                     padding=2, bias=False)
         self.bn1 = nn.BatchNorm2d(planes)
-        self.conv2 = nn.Conv2d(planes, planes, kernel_size=3, stride=stride,
+        self.conv2 = nn.Conv2d(planes, planes, kernel_size=4, stride=stride,
                      padding=1, bias=False)
         self.bn2 = nn.BatchNorm2d(planes)
 
@@ -49,6 +49,7 @@ class ResBlock(nn.Module):
         out = F.relu(self.bn1(out))
         out = self.conv2(out)
         out = self.bn2(out)
+        #print(out.shape, residual.shape)
         out += residual
         out = F.relu(out)
         return out

@@ -4,6 +4,9 @@ from tabnanny import check
 import gym_connect4
 import numpy as np
 import os
+os.environ["MKL_NUM_THREADS"] = "1" 
+os.environ["NUMEXPR_NUM_THREADS"] = "1" 
+os.environ["OMP_NUM_THREADS"] = "1" 
 import gym as gym 
 import time
 import multiprocessing as mp
@@ -25,7 +28,7 @@ if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("--iteration", type=int, default=0, help="Current iteration number to resume from")
     parser.add_argument("--total_iterations", type=int, default=100, help="Total number of iterations to run")
-    parser.add_argument("--MCTS_num_processes", type=int, default=4, help="Number of processes to run MCTS self-plays")
+    parser.add_argument("--MCTS_num_processes", type=int, default=8, help="Number of processes to run MCTS self-plays")
     parser.add_argument("--num_games_per_MCTS_process", type=int, default=5, help="Number of games to simulate per MCTS self-play process")
     parser.add_argument("--temperature_MCTS", type=float, default=1.1, help="Temperature for first 10 moves of each MCTS self-play")
     parser.add_argument("--num_evaluator_games", type=int, default=24, help="No of games to play to evaluate neural nets")
@@ -180,10 +183,10 @@ if __name__ == "__main__":
     current_time = now.strftime("%H:%M:%S")
     print("START SELF PLAY: ", current_time)
     #test_random(0)
-    #for i in range(2):
-    #    run_MCTS(args, start_idx=i*args.num_games_per_MCTS_process, iteration=i)
-    #    train_connectnet(args, iteration=i, new_optim_state=True)
-    #    test_random(i)
+    for i in range(2):
+       run_MCTS(args, start_idx=i*args.num_games_per_MCTS_process, iteration=1)
+       train_connectnet(args, iteration=1, new_optim_state=True)
+       test_random(i)
     #test_random(0)
     #print(torch.cuda.current_device())
     now = datetime.now()
