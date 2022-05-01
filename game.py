@@ -184,8 +184,8 @@ if __name__ == "__main__":
     print("START SELF PLAY: ", current_time)
     #test_random(0)
     for i in range(2):
-       run_MCTS(args, start_idx=i*args.num_games_per_MCTS_process, iteration=1)
-       train_connectnet(args, iteration=1, new_optim_state=True)
+       run_MCTS(args, start_idx=i*args.num_games_per_MCTS_process, iteration=18)
+       train_connectnet(args, iteration=18, new_optim_state=True)
        test_random(i)
     #test_random(0)
     #print(torch.cuda.current_device())

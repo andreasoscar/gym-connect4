@@ -29,6 +29,7 @@ class ConvBlock(nn.Module):
         self.bn1 = nn.BatchNorm2d(128)
 
     def forward(self, s):
+        print(s.shape)
         s = s.view(-1, 3, 6, 7)  # batch_size x channels x board_x x board_y
         s = F.relu(self.bn1(self.conv1(s)))
         return s
@@ -36,10 +37,10 @@ class ConvBlock(nn.Module):
 class ResBlock(nn.Module):
     def __init__(self, inplanes=128, planes=128, stride=1, downsample=None):
         super(ResBlock, self).__init__()
-        self.conv1 = nn.Conv2d(inplanes, planes, kernel_size=4, stride=stride,
-                     padding=2, bias=False)
+        self.conv1 = nn.Conv2d(inplanes, planes, kernel_size=2, stride=stride,
+                     padding=0, bias=False)
         self.bn1 = nn.BatchNorm2d(planes)
-        self.conv2 = nn.Conv2d(planes, planes, kernel_size=4, stride=stride,
+        self.conv2 = nn.Conv2d(planes, planes, kernel_size=2, stride=stride,
                      padding=1, bias=False)
         self.bn2 = nn.BatchNorm2d(planes)
 
@@ -49,7 +50,7 @@ class ResBlock(nn.Module):
         out = F.relu(self.bn1(out))
         out = self.conv2(out)
         out = self.bn2(out)
-        #print(out.shape, residual.shape)
+        print(out.shape, residual.shape)
         out += residual
         out = F.relu(out)
         return out
@@ -68,6 +69,7 @@ class OutBlock(nn.Module):
         self.fc = nn.Linear(32*5*6, 7)
     
     def forward(self,s):
+        print(s.shape, "<-----------")
         v = F.relu(self.bn(self.conv(s))) # value head
         v = v.view(-1, 3*5*6)  # batch_size X channel X height X width
         v = F.relu(self.fc1(v))

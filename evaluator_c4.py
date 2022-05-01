@@ -78,7 +78,7 @@ class arena():
             return None, dataset
     
     def play_round_pos(self, board, nn):
-        logger.info("Starting game round...")
+        #logger.info("Starting game round...")
         # if np.random.uniform(0,1) <= 0.5:
         #     white = self.current; black = self.best; w = "current"; b = "best"
         # else:
@@ -87,8 +87,6 @@ class arena():
         checkmate = False
         dataset = []
         value = 0; t = 0.1
-
-        
         root = UCT_search(current_board,777,nn,t)
         policy = get_policy(root, t); #print("Policy: ", policy, "white = %s" %(str("white")))
         return policy
