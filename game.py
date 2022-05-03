@@ -105,10 +105,10 @@ if __name__ == "__main__":
                 t = 1
             starts.append(t+1)
             if t == 0:
-                print("p1 start")
+                print("network1 start")
                 p1 += 1
             else:
-                print("p2 start")
+                print("network2 start")
                 p2 += 1
             while not game_over:
                     action_dict = {}
@@ -118,18 +118,20 @@ if __name__ == "__main__":
                     action = random.choice(env.game.get_moves())
                     #print(env.game.get_moves(), action)
                     
-                    policy_1 = evaluate_position(args, env.game, current_cnet)
+                    a = [0,1,2,3,4,5,6]
+                    policy = evaluate_position(args, env.game, current_cnet)
+                    policy_1 = evaluate_position(args, env.game, current_cnet_1)
                     if t == 0:
-                        action_dict[0] = np.random.choice(env.game.get_moves(), p=policy_1)
+                        action_dict[0] = np.random.choice(a, p=policy)
                     else:
-                        action_dict[1] = np.random.choice(env.game.get_moves(),p=policy_1)
+                        action_dict[1] = np.random.choice(a,p=policy_1)
                     #print("bot: ", policy_1+1)
-                    policy = evaluate_position(args, env.game, current_cnet_1)
+                    
                     #print(policy, np.argmax(policy))
                     if t == 1:
-                        action_dict[0] = np.random.choice(env.game.get_moves(),p=policy)
+                        action_dict[0] = np.random.choice(a,p=policy_1)
                     else:
-                        action_dict[1] =np.random.choice(env.game.get_moves(),p=policy)
+                        action_dict[1] =np.random.choice(a,p=policy)
                     #print("player (2), MCTS decision:", np.argmax(policy)+1)
                     obses, rewards, game_over, info = env.step(action_dict)
                     env.render()
@@ -267,7 +269,9 @@ if __name__ == "__main__":
     p2 = 0
     for i in range(20):
         play_net_vs_net(2, 7)
+        print("network indices")
         print(wins, winList, starts)
+    print("network indices")
     print(wins, winList, starts)
 
 
