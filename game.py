@@ -151,22 +151,22 @@ if __name__ == "__main__":
                 else:
                     game_over = False
                     env.reset()
-                winList.append(obses[0]['winner']+1)
-                if obses[0]['winner'] == 0:
-                    if t == 0:
-                        print("iteration " + str(it1) + " wins")
-                        wins[0]  = wins[0] + 1
-                    else:
-                        print("iteration " + str(it2) + " wins")
-                        wins[1]  = wins[1] + 1
-                else:
-                    if t == 0:
-                        print("iteration " + str(it2) + " wins")
-                        wins[1] = wins[1] + 1
-                    else:
-                        print("iteration " + str(it1) + " wins")
-                        wins[0] = wins[0] + 1
-                #print("WINNER: ", obses[0]['winner'])
+                if t == 0 and winner == 0:
+                    winList.append(1)
+                    print("iteration " + str(it1) + " wins")
+                    wins[0]  = wins[0] + 1
+                elif t == 1 and winner == 0:
+                    winList.append(2)
+                    print("iteration " + str(it2) + " wins")
+                    wins[1]  = wins[1] + 1
+                elif t == 0 and winner == 1:
+                    winList.append(2)
+                    print("iteration " + str(it2) + " wins")
+                    wins[1]  = wins[1] + 1
+                elif t == 1 and winner == 0:
+                    winList.append(1)
+                    print("iteration " + str(it1) + " wins")
+                    wins[0]  = wins[0] + 1
                 break
 
     
