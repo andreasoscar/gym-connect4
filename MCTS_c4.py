@@ -145,7 +145,7 @@ def UCT_search(game_state, num_reads,net,temp, max_depth = 20):
         #   print(encoded_s.to("cuda:0"))
         #   net = encoded_s.to("cuda:0")
         #   child_priors, value_estimate = net(encoded_s) 
-        print(encoded_s.shape)   
+        #print(encoded_s.shape)   
         
         child_priors, value_estimate = net(encoded_s)
         

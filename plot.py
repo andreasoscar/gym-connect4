@@ -13,8 +13,9 @@ y = [0.64, 0.78, 0.78, 0.82, 0.82, 0.8, 0.86, 0.82, 0.8, 0.84, 0.86, 0.78, 0.78,
     0.82, 0.8, 0.9, 0.76, 0.9, 0.84, 0.84, 0.8]
 x = [252*i for i in range(len(y))]
 
-y1 = [0.9, 0.95, 0.65, 0.75, 0.9, 0.85,0.65, 0.8, 0.7, 0.9, 0.9, 1, 0.9, 0.7, 0.95, 0.8, 0.65, 0.65, 0.8, 0.95, 0.85]
+y1 = [0.9, 0.95, 0.65, 0.75, 0.9, 0.85,0.65, 0.8, 0.7, 0.9, 0.9, 1, 0.9, 0.7, 0.95, 0.8, 0.65, 0.65, 0.8, 0.95, 0.85, 0.85, 0.8, 0.75, 1, 0.85]
 x1 = [252*i for i in range(len(y1))]
+#print(len(y1))
 
  
 # plotting the points
@@ -38,7 +39,7 @@ for i in range(1,len(y)):
     y_.append(running_mean(i,y)[0])
 plt.plot(x,y_, label = 'trailing average, 3x3', color = 'green')
 plt.legend(bbox_to_anchor=(0.9,0.95), loc="lower center", borderaxespad=0)
-#plt.subplots_adjust(right=0.75)   
+#plt.subplots_adjust(right=0.75)
 
 y1_ = [0]
 

@@ -1,4 +1,5 @@
 
+from calendar import c
 import sys
 from tabnanny import check
 import gym_connect4
@@ -20,6 +21,7 @@ import encoder_decoder_c4 as ed
 from evaluator_c4 import evaluate_nets
 from evaluator_c4 import evaluate_position
 from alpha_net_c4 import ConnectNet
+from alpha_net_c4_2 import ConnectNet1
 from datetime import datetime
 env = gym.make('Connect4Env-v0')
 def foo(q):
@@ -44,25 +46,44 @@ if __name__ == "__main__":
 
 
 
-    
-    def test_random(iteration):
+
+    def play_net_vs_net(it1,it2):
         cuda = torch.cuda.is_available()
         #LOAD NEURAL NETWORK
         
-        current_net="%s_iter%d.pth.tar" % (args.neural_net_name, 1);
+        current_net="%s_iter%d.pth.tar" % (args.neural_net_name, it1);
         current_net_filename = os.path.join("",\
                                         current_net)
-        current_cnet = ConnectNet()
+        current_cnet = ConnectNet1()
+        
+        current_net_1 ="%s_iter%d.pth.tar" % (args.neural_net_name, it2);
+        current_net_filename_1 = os.path.join("",\
+                                        current_net_1)
+        current_cnet_1 = ConnectNet()
+        
         
         current_cnet.share_memory()
         current_cnet.eval()
+        
+        current_cnet_1.share_memory()
+        current_cnet_1.eval()
         if not cuda:
             checkpoint = torch.load(current_net_filename, map_location=torch.device('cpu'))
         else:
             checkpoint = torch.load(current_net_filename)
         #print(checkpoint['state_dict'].keys)
+        #print(checkpoint)
         current_cnet.load_state_dict(checkpoint['state_dict'])
-        print(current_cnet.conv)
+        
+        if not cuda:
+            
+            checkpoint_1 = torch.load(current_net_filename_1, map_location=torch.device('cpu'))
+        else:
+            checkpoint_1 = torch.load(current_net_filename_1)
+        #print(checkpoint['state_dict'].keys)
+        current_cnet_1.load_state_dict(checkpoint_1['state_dict'])
+        
+        
         
         #END LOAD NEURAL NETWORK
     
@@ -73,19 +94,43 @@ if __name__ == "__main__":
         games_completed = 0
         #depth = 2
         winners = [0,0]
+        p1 = 0
+        p2 = 0
         while games_completed < args.num_evaluator_games:
+            v = random.uniform(0,1)
+            print(v)
+            if v > 0.5:
+                t = 0
+            else:
+                t = 1
+            starts.append(t+1)
+            if t == 0:
+                print("p1 start")
+                p1 += 1
+            else:
+                print("p2 start")
+                p2 += 1
             while not game_over:
                     action_dict = {}
                     #print("CURRENT PLAYER: ", env.game.player)
                     action = env.action_space.sample()
+                    #print(env.game.get_moves())
                     action = random.choice(env.game.get_moves())
-                    print(env.game.get_moves(), action)
-                    action_dict[0] = action
-                    print("bot: ", action+1)
-                    policy = evaluate_position(args, env.game, current_cnet)
-                    print(policy, np.argmax(policy))
-                    action_dict[1] = np.argmax(policy)
-                    print("player (2), MCTS decision:", np.argmax(policy)+1)
+                    #print(env.game.get_moves(), action)
+                    
+                    policy_1 = evaluate_position(args, env.game, current_cnet)
+                    if t == 0:
+                        action_dict[0] = np.random.choice(env.game.get_moves(), p=policy_1)
+                    else:
+                        action_dict[1] = np.random.choice(env.game.get_moves(),p=policy_1)
+                    #print("bot: ", policy_1+1)
+                    policy = evaluate_position(args, env.game, current_cnet_1)
+                    #print(policy, np.argmax(policy))
+                    if t == 1:
+                        action_dict[0] = np.random.choice(env.game.get_moves(),p=policy)
+                    else:
+                        action_dict[1] =np.random.choice(env.game.get_moves(),p=policy)
+                    #print("player (2), MCTS decision:", np.argmax(policy)+1)
                     obses, rewards, game_over, info = env.step(action_dict)
                     env.render()
                     #print(env.game.current_board)
@@ -104,8 +149,22 @@ if __name__ == "__main__":
                 else:
                     game_over = False
                     env.reset()
-                
-                print("WINNER: ", obses[0]['winner'])
+                winList.append(obses[0]['winner']+1)
+                if obses[0]['winner'] == 0:
+                    if t == 0:
+                        print("iteration " + str(it1) + " wins")
+                        wins[0]  = wins[0] + 1
+                    else:
+                        print("iteration " + str(it2) + " wins")
+                        wins[1]  = wins[1] + 1
+                else:
+                    if t == 0:
+                        print("iteration " + str(it2) + " wins")
+                        wins[1] = wins[1] + 1
+                    else:
+                        print("iteration " + str(it1) + " wins")
+                        wins[0] = wins[0] + 1
+                #print("WINNER: ", obses[0]['winner'])
                 break
 
     
@@ -183,14 +242,14 @@ if __name__ == "__main__":
     current_time = now.strftime("%H:%M:%S")
     print("START SELF PLAY: ", current_time)
     #test_random(0)
-    for i in range(2):
-       run_MCTS(args, start_idx=i*args.num_games_per_MCTS_process, iteration=18)
-       train_connectnet(args, iteration=18, new_optim_state=True)
-       test_random(i)
+    # for i in range(2):
+    #    run_MCTS(args, start_idx=i*args.num_games_per_MCTS_process, iteration=18)
+    #    train_connectnet(args, iteration=18, new_optim_state=True)
+    #    test_random(i)
     #test_random(0)
     #print(torch.cuda.current_device())
     now = datetime.now()
-    run_MCTS(args, start_idx=0, iteration=1)
+    #run_MCTS(args, start_idx=0, iteration=1)
     #test_random(0)
     current_time = now.strftime("%H:%M:%S")
     print("FINISHED SELF PLAY: ", current_time)
@@ -201,7 +260,15 @@ if __name__ == "__main__":
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     print("END EVALUATION", current_time)
-    #evaluate_nets(args, iteration_1=5, iteration_2=1)
+    wins = [0,0]
+    starts = []
+    winList = []
+    p1 = 0
+    p2 = 0
+    for i in range(20):
+        play_net_vs_net(2, 7)
+        print(wins, winList, starts)
+    print(wins, winList, starts)
 
 
     
