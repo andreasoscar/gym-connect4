@@ -1,1 +1,13 @@
 12:24:29, finished training net: cc4_current_net_, iteration 1
+14:17:26, finished training net: c4_current_net_, iteration 18
+14:19:36, finished training net: c4_current_net_, iteration 18
+14:20:47, finished training net: c4_current_net_, iteration 18
+14:27:40, finished training net: c4_current_net, iteration 0
+14:34:51, finished training net: c4_current_net, iteration 0
+14:36:04, finished training net: c4_current_net, iteration 1
+14:41:40, finished training net: c4_current_net, iteration 0
+14:42:28, finished training net: c4_current_net, iteration 1
+14:49:13, finished training net: c4_current_net, iteration 0
+14:50:36, finished training net: c4_current_net, iteration 1
+14:57:09, finished training net: c4_current_net, iteration 0
+14:58:28, finished training net: c4_current_net, iteration 1

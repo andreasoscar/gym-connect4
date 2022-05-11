@@ -203,7 +203,9 @@ def MCTS_self_play(connectnet, num_games, start_idx, cpu, args, iteration):
             current_board = do_decode_n_move_pieces(current_board,\
                                                     np.random.choice(np.array([0,1,2,3,4,5,6]), \
                                                                      p = policy)) # decode move and move piece(s)
-            dataset.append([board_state,policy])
+            for i in range(4):
+                dataset.append([board_state,policy])
+                
             if args.print_board:
                 print("[Iteration: %d CPU: %d]: Game %d CURRENT BOARD:\n" % (iteration, cpu, idxx), current_board.current_board,current_board.player); print(" ")
             if (current_board.is_winner(0) or current_board.is_winner(1)) == True: # if somebody won
@@ -287,11 +289,11 @@ def run_MCTS(args, start_idx=0, iteration=0):
         
         with torch.no_grad():
             MCTS_self_play(net, args.num_games_per_MCTS_process, start_idx, 0, args, iteration)
-        f = open("MCTS_log/log.txt", "a")
-        now = datetime.now()
-        current_time = now.strftime("%H:%M:%S")
-        f.write(current_time + "," + " finished MCTS play for iteration: " + str(iteration) + " with " + str(args.num_games_per_MCTS_process) + "games per process, with a total of " 
-        + str(args.num_games_per_MCTS_process * args.MCTS_num_processes) + " games played.\n")
-        f.close()
+        # f = open("MCTS_log/log.txt", "a")
+        # now = datetime.now()
+        # current_time = now.strftime("%H:%M:%S")
+        # f.write(current_time + "," + " finished MCTS play for iteration: " + str(iteration) + " with " + str(args.num_games_per_MCTS_process) + "games per process, with a total of " 
+        # + str(args.num_games_per_MCTS_process * args.MCTS_num_processes) + " games played.\n")
+        # f.close()
         logger.info("Finished MCTS!")
 

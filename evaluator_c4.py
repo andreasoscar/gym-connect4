@@ -210,14 +210,12 @@ def evaluate_nets(args, iteration_1, iteration_2) :
         arena1 = arena(current_cnet=current_cnet, best_cnet=best_cnet)
         arena1.evaluate(num_games=args.num_evaluator_games, cpu=0)
         
-        stats = load_pickle("wins_cpu_%i" % (0))
-        wins_ratio = stats['best_win_ratio']/num_processes
         
-        f = open("evaluator_log/log.txt", "a")
-        now = datetime.now()
-        current_time = now.strftime("%H:%M:%S")
-        f.write(current_time + ", net " + str(iteration_2) + " vs net " + str(iteration_1) + ", win ratio : " + str(wins_ratio) + "\n")
-        f.close()
+        stats = load_pickle("wins_cpu_%i" % (0))
+        if stats['best_win_ratio'] >= 0.55:
+            return iteration_2
+        else:
+            return iteration_1
         
     
     

@@ -76,7 +76,6 @@ if __name__ == "__main__":
         current_cnet.load_state_dict(checkpoint['state_dict'])
         
         if not cuda:
-            
             checkpoint_1 = torch.load(current_net_filename_1, map_location=torch.device('cpu'))
         else:
             checkpoint_1 = torch.load(current_net_filename_1)
@@ -240,39 +239,34 @@ if __name__ == "__main__":
     #evaluate_minimax_MCTS()
 
 
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print("START SELF PLAY: ", current_time)
-    #test_random(0)
     # for i in range(2):
     #    run_MCTS(args, start_idx=i*args.num_games_per_MCTS_process, iteration=18)
     #    train_connectnet(args, iteration=18, new_optim_state=True)
-    #    test_random(i)
-    #test_random(0)
-    #print(torch.cuda.current_device())
-    now = datetime.now()
-    #run_MCTS(args, start_idx=0, iteration=1)
-    #test_random(0)
-    current_time = now.strftime("%H:%M:%S")
-    print("FINISHED SELF PLAY: ", current_time)
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print("START EVALUATION", current_time)
-    #evaluate_nets(args, iteration_1=3, iteration_2=5)
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print("END EVALUATION", current_time)
-    wins = [0,0]
-    starts = []
-    winList = []
-    p1 = 0
-    p2 = 0
-    for i in range(20):
-        play_net_vs_net(2, 7)
-        print("network indices")
-        print(wins, winList, starts)
-    print("network indices")
-    print(wins, winList, starts)
+
+
+    for i in range(args.iteration, args.total_iterations): 
+        run_MCTS(args, start_idx=0, iteration=i)
+        train_connectnet(args, iteration=i, new_optim_state=True)
+        if i >= 1:
+            winner = evaluate_nets(args, i-1, i)
+            counts = 0
+            while (winner != (i + 1)):
+                print("Trained net didn't perform better, generating more MCTS games for retraining...")
+                run_MCTS(args, start_idx=(counts + 1)*args.num_games_per_MCTS_process, iteration=i)
+                counts += 1
+                train_connectnet(args, iteration=i, new_optim_state=True)
+                winner = evaluate_nets(args, i-1, i )
+
+    # wins = [0,0]
+    # starts = []
+    # winList = []
+
+    # for i in range(1):
+    #     play_net_vs_net(2, 7)
+    #     print("network indices")
+    #     print(wins, winList, starts)
+    # print("network indices")
+    # print(wins, winList, starts)
 
 
     
