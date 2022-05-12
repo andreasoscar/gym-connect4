@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+#import wandb
 from alpha_net_c4 import ConnectNet, AlphaLoss, board_data
 import os
 import pickle
@@ -12,6 +12,8 @@ from torch.nn.utils import clip_grad_norm_
 import matplotlib.pyplot as plt
 import logging
 
+#wandb.init(project='my-test-project', entity='andreasolsson')
+#wandb.require(experiment='service')
 logging.basicConfig(format='%(asctime)s [%(levelname)s]: %(message)s', \
                     datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.INFO)
 logger = logging.getLogger(__file__)
@@ -76,7 +78,6 @@ def train(net, dataset, optimizer, scheduler, start_epoch, cpu, args, iteration)
         losses_per_batch = []
         for i,data in enumerate(train_loader,0):
             state, policy, value = data
-            #print(state, policy, value, "<-------")
             state, policy, value = state.float(), policy.float(), value.float()
             if cuda:
                 state, policy, value = state.cuda(), policy.cuda(), value.cuda()
@@ -90,6 +91,7 @@ def train(net, dataset, optimizer, scheduler, start_epoch, cpu, args, iteration)
                 optimizer.zero_grad()
                 
             total_loss += loss.item()
+            
             if i % update_size == (update_size - 1):    # print every update_size-d mini-batches of size = batch_size
                 losses_per_batch.append(args.gradient_acc_steps*total_loss/update_size)
                 print('[Iteration %d] Process ID: %d [Epoch: %d, %5d/ %d points] total loss per batch: %.3f' %
@@ -101,9 +103,12 @@ def train(net, dataset, optimizer, scheduler, start_epoch, cpu, args, iteration)
                 #print("Res18 grad %.7f:" % net.res_18.conv1.weight.grad.mean().item())
                 print(" ")
                 total_loss = 0.0
+              
         
         scheduler.step()
         if len(losses_per_batch) >= 1:
+            v = sum(losses_per_batch)/len(losses_per_batch)
+            #wandb.log({"loss": v})
             losses_per_epoch.append(sum(losses_per_batch)/len(losses_per_batch))
         if (epoch % 2) == 0:
             save_as_pickle("losses_per_epoch_iter%d.pkl" % (iteration), losses_per_epoch)
@@ -132,8 +137,10 @@ def train(net, dataset, optimizer, scheduler, start_epoch, cpu, args, iteration)
     
 def train_connectnet(args, iteration, new_optim_state):
     # gather data
+    #wandb.config = dict(args)
+    #wandb.config.update(args)
     logger.info("Loading training data...")
-    data_path="./datasets/iter_%d/" % iteration
+    data_path="./datasets/iter_%d/" % (iteration-1)
     datasets = []
     for idx,file in enumerate(os.listdir(data_path)):
         filename = os.path.join(data_path,file)
@@ -153,7 +160,7 @@ def train_connectnet(args, iteration, new_optim_state):
     start_epoch = load_state(net, optimizer, scheduler, args, iteration, new_optim_state)
     
     train(net, datasets, optimizer, scheduler, start_epoch, 0, args, iteration)
-    f = open("cc4_log/log.txt", "a")
+    f = open("./cc4_log/log.txt", "a")
     now = datetime.datetime.now()
     current_time = now.strftime("%H:%M:%S")
     f.write(current_time + ", finished training net: " + str(args.neural_net_name) + ", iteration " + str(iteration) + "\n")

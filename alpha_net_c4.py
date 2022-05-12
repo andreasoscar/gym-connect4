@@ -45,6 +45,8 @@ class ResBlock(nn.Module):
         self.bn2 = nn.BatchNorm2d(planes)
 
     def forward(self, x):
+        #print(x.shape)
+        print(ResBlock.shape)
         residual = x
         out = self.conv1(x)
         out = F.relu(self.bn1(out))
